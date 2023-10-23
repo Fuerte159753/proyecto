@@ -21,17 +21,31 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $correo = $data->Correo;
     $password = $data->password;
 
-    $sql = "SELECT * FROM usuarios WHERE correo = '$correo' AND password = '$password'";
-    $result = $conn->query($sql);
+    $sqlRepartidores = "SELECT * FROM repartidores WHERE correo = '$correo'";
+    $sqlClientes = "SELECT * FROM clientes WHERE correo = '$correo'";
 
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        echo json_encode(array(
-            "message" => "Inicio de sesión exitoso",
-            "Tipeuser" => $row["Tipeuser"]
-        ));
+    $resultRepartidores = $conn->query($sqlRepartidores);
+    $resultClientes = $conn->query($sqlClientes);
+
+    if ($resultRepartidores->num_rows > 0) {
+        $row = $resultRepartidores->fetch_assoc();
+        // Usuario en repartidores
+        if ($row["password"] === $password) {
+            echo json_encode(array("message" => "Inicio de sesión exitoso", "Tipeuser" => 0));
+        } else {
+            echo json_encode(array("message" => "Verifica tus datos"));
+        }
+    } elseif ($resultClientes->num_rows > 0) {
+        $row = $resultClientes->fetch_assoc();
+        // Usuario en clientes
+        if ($row["password"] === $password) {
+            echo json_encode(array("message" => "Inicio de sesión exitoso", "Tipeuser" => 1));
+        } else {
+            echo json_encode(array("message" => "Verifica tus datos"));
+        }
     } else {
-        echo json_encode(array("message" => "Credenciales incorrectas"));
+        // Usuario no encontrado
+        echo json_encode(array("message" => "Usuario no encontrado"));
     }
 }
 
