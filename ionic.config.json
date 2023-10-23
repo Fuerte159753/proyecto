@@ -1,0 +1,9 @@
+{
+  "name": "pedidosapp",
+  "integrations": {
+    "capacitor": {
+      "enabled": false
+    }
+  },
+  "type": "angular"
+}
