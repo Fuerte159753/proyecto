@@ -37,6 +37,10 @@ const routes: Routes = [
     path: 'pedi-anter',
     loadChildren: () => import('./pedi-anter/pedi-anter.module').then( m => m.PediAnterPageModule)
   },
+  {
+    path: 'repartidor',
+    loadChildren: () => import('./repartidor/repartidor.module').then( m => m.RepartidorPageModule)
+  },
 ];
 
 @NgModule({

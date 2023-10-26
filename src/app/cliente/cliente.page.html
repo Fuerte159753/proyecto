@@ -1,8 +1,28 @@
-<ion-header>
-  <ion-toolbar color="primary">
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Hola</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Cliente</ion-title>
-  </ion-toolbar>
-</ion-header>
+  </ion-content>
+</ion-menu>
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title><!--espacio para mensaje-->{{mensaje}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <ion-tab-button>
+      <ion-button routerLink="/pedido">Realizar pedido</ion-button>
+      <ion-button routerLink="">Ver estatus pedidos</ion-button>
+    </ion-tab-button>
+  </ion-content>
+</div>
