@@ -1,11 +1,11 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" class="header-background">
   <ion-toolbar>
     <ion-title>{{ mensaje }}</ion-title>
   </ion-toolbar>
-</ion-header>
-<ion-content>
+ </ion-header>
+ <ion-content class="content-style">
   <ion-header class="header-content">
-    <p>Que desea ordenar el dia de hoy</p>
+    <p>¿Qué desea ordenar el día de hoy?</p>
   </ion-header>
   <form>
     <ion-item>
@@ -14,16 +14,28 @@
     </ion-item>
     <br>
     <br>
-    <ion-item>
+    <ion-item class="ion-padding">
       <ion-label position="stacked">Seleciona tu direccion</ion-label>
       <ion-select placeholder="selecciona">
         <ion-select-option disabled="true">Por defecto</ion-select-option>
-        <ion-select-option>por mi casa</ion-select-option>
+        <ion-select-option>Rincón</ion-select-option>
+              <ion-select-option>San Isidro</ion-select-option>
+              <ion-select-option>Caltimacán</ion-select-option>
+              <ion-select-option>Candelaria</ion-select-option>
+              <ion-select-option>San Miguel</ion-select-option>
+              <ion-select-option>Bondhi</ion-select-option>
+              <ion-select-option>La Vega</ion-select-option>
+              <ion-select-option>Motho</ion-select-option>
+              <ion-select-option>Juchitlán</ion-select-option>
+              <ion-select-option>San Pedro</ion-select-option>
+              <ion-select-option>Munsi</ion-select-option>
+              <ion-select-option>Remedios</ion-select-option>
+              <ion-select-option>Alto Calvario</ion-select-option>
+              <ion-select-option>San Antonio</ion-select-option>
+
       </ion-select>
     </ion-item>
-      <ion-tab-button>
-        <ion-button style=" width: 150px;" color="success">Enviar</ion-button>
-      </ion-tab-button>
+    <ion-button style=" width: 150px;" color="success">Enviar</ion-button>
   </form>
-</ion-content>
-
+ </ion-content>
+ 

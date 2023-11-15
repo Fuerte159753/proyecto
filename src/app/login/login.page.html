@@ -1,21 +1,30 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>inicia sesion</ion-title>
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="primary">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>Registrarse</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="miFormulario" (ngSubmit)="onSubmit()">
-    <ion-item>
-      <ion-label position="floating">Correo</ion-label>
+  <div id="header">
+    <h1>Iniciar sesión</h1>
+    <img src="assets/img/logo.jpeg">
+  </div>
+  <form [formGroup]="miFormulario" (ngSubmit)="onSubmit()" class="form">
+    <ion-item class="custom-input">
+      <ion-label position="floating">Correo:</ion-label>
       <ion-input formControlName="Correo"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label position="floating">Contraseña</ion-label>
+    <ion-item class="custom-input">
+      <ion-label position="floating">Contraseña:</ion-label>
       <ion-input formControlName="password" type="password"></ion-input>
     </ion-item>
-    <ion-button type="submit" expand="full" color="primary">
-      Ingresar
-    </ion-button>
+    <ion-button expand="block" shape="round" type="submit" class="custom-button">Iniciar sesión</ion-button>
   </form>
 </ion-content>
