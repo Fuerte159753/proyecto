@@ -14,7 +14,7 @@
 <ion-content>
   <div id="header">
     <h1>Iniciar sesión</h1>
-    <img src="assets/img/logo.jpeg">
+    <img src="assets/img/logo.jpg">
   </div>
   <form [formGroup]="miFormulario" (ngSubmit)="onSubmit()" class="form">
     <ion-item class="custom-input">
@@ -25,6 +25,6 @@
       <ion-label position="floating">Contraseña:</ion-label>
       <ion-input formControlName="password" type="password"></ion-input>
     </ion-item>
-    <ion-button expand="block" shape="round" type="submit" class="custom-button">Iniciar sesión</ion-button>
+    <ion-button shape="round" type="submit" expand="full" class="ion-text-center">Iniciar sesión</ion-button>
   </form>
 </ion-content>

@@ -1,50 +1,34 @@
-<ion-menu contentId="main-content">
+<div class="ion-page" id="main-content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Hola</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content class="ion-padding">
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <!-- Puedes agregar elementos adicionales en el menú si es necesario -->
-  </ion-content>
- </ion-menu>
- 
- <ion-content class="ion-padding" id="main-content">
-  <ion-header>
-    <!-- Encabezado de la página principal -->
-    <ion-toolbar class="header-toolbar">
       <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
+        <!-- Puedes agregar botones aquí si es necesario -->
       </ion-buttons>
-      <ion-title class="ion-text-center">{{mensaje}}</ion-title>
+      <ion-title><!-- Espacio para mensaje -->{{mensaje}}</ion-title>
     </ion-toolbar>
   </ion-header>
- 
-  <!-- Imagen como fondo del encabezado -->
-  <ion-img src="assets/img/rep.jpg" class="header-image"></ion-img>
- 
-  <!-- Contenido principal -->
-  <ion-row class="ion-justify-content-center ion-align-items-center">
-    <ion-button  routerLink="/pedido">Realizar pedido</ion-button>
-    <ion-button expand="block" shape="round"  class="custom-button" routerLink="">Ver estatus pedidos</ion-button>
-  </ion-row>
- 
-  <!-- Barra de pestañas -->
-  <ion-tabs>
-    <!-- Pestañas en la parte inferior de la página -->
-    <ion-tab-bar slot="bottom" class="ion-justify-content-end">
-      <ion-tab-button tab="home">
-       <ion-icon name="person-circle-outline"></ion-icon>
-       Perfil
-      </ion-tab-button>
-      <ion-tab-button tab="settings">
-       <ion-icon name="settings-outline"></ion-icon>
-       Configuración
-      </ion-tab-button>
-     </ion-tab-bar>
-  </ion-tabs>
- </ion-content>
- 
+
+  <ion-img src="assets/img/rep.jpg" class="header-image" style="width: 110%; height: 50%;"></ion-img>
+
+
+<ion-content class="ion-padding">
+  <ion-tab-button>
+    <ion-button expand="block" shape="round" class="custom-button" routerLink="/pedido">Realizar pedido</ion-button>
+    <ion-button expand="block" shape="round" class="custom-button" routerLink="">Ver estatus pedidos</ion-button>
+  </ion-tab-button>
+
+    <ion-tabs>
+      <!-- Pestañas en la parte inferior de la página -->
+      <ion-tab-bar slot="bottom" class="ion-justify-content-end">
+        <ion-tab-button tab="home">
+          <ion-icon name="person-circle-outline"></ion-icon>
+          Perfil
+        </ion-tab-button>
+        <ion-tab-button tab="settings">
+          <ion-icon name="settings-outline"></ion-icon>
+          Configuración
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-content>
+</div>
