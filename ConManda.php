@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if ($resultRepartidores->num_rows > 0) {
         $row = $resultRepartidores->fetch_assoc();
-        // Usuario en repartidores
+        // Usuario encontrado en la tabla de repartidores
         if ($row["password"] === $password) {
             echo json_encode(array("message" => "Inicio de sesión exitoso", "Tipeuser" => 0));
         } else {
@@ -37,14 +37,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     } elseif ($resultClientes->num_rows > 0) {
         $row = $resultClientes->fetch_assoc();
-        // Usuario en clientes
+        // Usuario encontrado en la tabla de clientes
         if ($row["password"] === $password) {
-            echo json_encode(array("message" => "Inicio de sesión exitoso", "Tipeuser" => 1));
+            echo json_encode(array("message" => "Inicio de sesión exitoso", "Tipeuser" => 1, "id" => $row["cliente_id"]));
         } else {
             echo json_encode(array("message" => "Verifica tus datos"));
         }
     } else {
-        // Usuario no encontrado
+        // Usuario no encontrado en ninguna tabla
         echo json_encode(array("message" => "Usuario no encontrado"));
     }
 }
