@@ -7,6 +7,7 @@ import { AlertController } from '@ionic/angular'; // Asegúrate de importar Aler
 interface LoginResponse {
   message: string;
   Tipeuser: number;
+  id: number; // O el tipo de dato que corresponda al ID del cliente
 }
 
 @Component({
@@ -43,21 +44,21 @@ export class LoginPage implements OnInit {
     };
 
     this.http.post<LoginResponse>('http://localhost/ConManda.php', JSON.stringify(data), { headers: headers })
-      .subscribe(response => {
-        console.log(response); // Maneja la respuesta del servidor
+  .subscribe(response => {
+    console.log(response); // Maneja la respuesta del servidor
 
-        if (response.Tipeuser == 0) {
-          // Redirige al repartidor
-          this.router.navigate(['/repartidor']);
-          console.log('eres un repartidor');
-        } else if (response.Tipeuser == 1) {
-          // Redirige al cliente
-          this.router.navigate(['/cliente']);
-        } else if (response.message === "Verifica tus datos" || response.message === "Usuario no encontrado") {
-          // Muestra una alerta de Ionic
-          this.showAlert(response.message);
-        }
-      });
+    if (response.Tipeuser == 0) {
+      // Redirige al repartidor
+      this.router.navigate(['/repartidor']);
+      console.log('eres un repartidor');
+    } else if (response.Tipeuser == 1) {
+      // Redirige al cliente y envía el ID del cliente
+      this.router.navigate(['/cliente'], { queryParams: { idCliente: response.id } });
+    } else if (response.message === "Verifica tus datos" || response.message === "Usuario no encontrado") {
+      // Muestra una alerta de Ionic
+      this.showAlert(response.message);
+    }
+  });
   }
 
   ngOnInit() {

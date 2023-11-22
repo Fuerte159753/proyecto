@@ -5,25 +5,39 @@
 </ion-header>
 <ion-content>
   <ion-header class="header-content">
-    <p>Que desea ordenar el dia de hoy</p>
+    <p>Que desea ordenar el dia de hoy {{nombreCliente}}</p>
   </ion-header>
   <form>
     <ion-item>
-      <ion-label position="floating">Escriba su pedido</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-    <br>
-    <br>
-    <ion-item>
-      <ion-label position="stacked">Seleciona tu direccion</ion-label>
-      <ion-select placeholder="selecciona">
-        <ion-select-option disabled="true">Por defecto</ion-select-option>
-        <ion-select-option>por mi casa</ion-select-option>
+      <ion-label position="floating">Categoría</ion-label>
+      <ion-select (ionChange)="seleccionCategoria($event)">
+        <ion-select-option *ngFor="let categoria of categorias" [value]="categoria">
+          {{ categoria.nombre }}
+        </ion-select-option>
       </ion-select>
     </ion-item>
-      <ion-tab-button>
-        <ion-button style=" width: 150px;" color="success">Enviar</ion-button>
-      </ion-tab-button>
+    <ion-item *ngIf="subcategorias.length > 0">
+      <ion-label position="floating">Subcategoría</ion-label>
+      <ion-select>
+        <ion-select-option *ngFor="let subcategoria of subcategorias" [value]="subcategoria">
+          {{ subcategoria }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="mostrarPedido">
+      <ion-label position="stacked">Agrega tu pedido</ion-label>
+      <ion-input (input)="actualizarPedidoTexto($event)"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="mostrarPedido && pedidoTexto.trim() !== ''">
+      <ion-label position="stacked">Selecciona tu dirección</ion-label>
+      <ion-select placeholder="Selecciona">
+        <ion-select-option *ngFor="let direccion of direcciones" [value]="direccion">{{ direccion }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    
+    <ion-tab-button>
+      <ion-button style="width: 150px;" color="success" [disabled]="!camposCompletos">Enviar</ion-button>
+    </ion-tab-button>    
   </form>
 </ion-content>
 
