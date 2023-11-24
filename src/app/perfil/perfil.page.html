@@ -1,16 +1,24 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" class="custom-header">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/cliente"></ion-back-button>
+    </ion-buttons>
     <ion-title>Perfil</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-img src="assets/img/avatar.png" class="header-image" style="width: 20%; height: 20%;"></ion-img>
-  <ion-item-group>
-  <p>Nombre(s): <span>{{ clienteData.nombre }}</span></p>
-  <p>Apellido(s): <span>{{ clienteData.apellido }}</span></p>
-  <p>Telefono: <span>{{ clienteData.telefono }}</span></p>
-  <p>Correo: <span>{{ clienteData.correo }}</span></p>
-  <p>Password: <span>{{ clienteData.password }}</span></p> 
+<ion-content [fullscreen]="true" class="custom-content">
+  <br>
+  <br>
+  <br>
+  <div class="center-image">
+    <ion-img src="assets/img/avatar.png" class="header-image"></ion-img>
+  </div>
+  <ion-item-group class="custom-item-group">
+    <p class="custom-info"><strong>Nombre(s):</strong> <span>{{ clienteData.nombre }}</span></p>
+    <p class="custom-info"><strong>Apellido(s):</strong> <span>{{ clienteData.apellido }}</span></p>
+    <p class="custom-info"><strong>Telefono:</strong> <span>{{ clienteData.telefono }}</span></p>
+    <p class="custom-info"><strong>Correo:</strong> <span>{{ clienteData.correo }}</span></p>
+    <p class="custom-info"><strong>Password:</strong> <span>{{ clienteData.password }}</span></p>
   </ion-item-group>
 </ion-content>

@@ -1,9 +1,15 @@
 <div class="ion-page" id="main-content">
   <ion-header [translucent]="true" class="custom-header">
     <ion-toolbar>
-      <ion-title><!-- Espacio para mensaje -->{{mensaje}} {{nombreCliente}}</ion-title>
+      <ion-buttons slot="end"> 
+        <ion-button>
+          <ion-icon name="notifications-outline"></ion-icon> 
+        </ion-button>
+      </ion-buttons>
+      <ion-title>{{mensaje}} {{nombreCliente}}</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-breadcrumbs></ion-breadcrumbs>
 
   <ion-img src="assets/img/rep.jpg" class="header-image" style="width: 110%; height: 50%;"></ion-img>
 
@@ -14,18 +20,18 @@
     <ion-button expand="block" shape="round" class="custom-button" (click)="irestatus()">Ver estatus pedidos</ion-button>
   </ion-tab-button>
 
-    <ion-tabs>
-      <!-- Pestañas en la parte inferior de la página -->
-      <ion-tab-bar slot="bottom" class="ion-justify-content-end">
-        <ion-tab-button (click)="irperfil()">
-          <ion-icon name="person-circle-outline"></ion-icon>
-          Perfil
-        </ion-tab-button>
-        <ion-tab-button tab="settings">
-          <ion-icon name="settings-outline"></ion-icon>
-          Configuración
-        </ion-tab-button>
-      </ion-tab-bar>
-    </ion-tabs>
+  <ion-tabs>
+    <!-- Pestañas en la parte inferior de la página -->
+    <ion-tab-bar slot="bottom" class="ion-justify-content-end">
+      <ion-tab-button (click)="irperfil()">
+        <ion-icon name="person-circle-outline"></ion-icon>
+        Perfil
+      </ion-tab-button>
+      <ion-tab-button tab="settings">
+        <ion-icon name="settings-outline"></ion-icon>
+        Configuración
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
   </ion-content>
 </div>
