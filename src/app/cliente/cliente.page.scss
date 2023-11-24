@@ -5,3 +5,14 @@
         }
   }
   
+  .custom-breadcrumbs {
+      display: flex;
+      justify-content: space-around; /* Esto centra los breadcrumbs horizontalmente */
+      align-items: center; /* Esto centra los breadcrumbs verticalmente */
+      height: 60px; /* Ajusta la altura según tus necesidades */
+    }
+    
+    .custom-icon {
+      font-size: 24px; /* Ajusta el tamaño del ícono según tus necesidades */
+    }
+    

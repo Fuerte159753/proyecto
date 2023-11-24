@@ -1,0 +1,37 @@
+.custom-header {
+    ion-toolbar {
+        background-color: #3880ff; // Cambia el color de fondo según tu diseño
+        padding: 10px; // Ajusta el espaciado según tus preferencias
+      }
+}
+  /* Agrega estilos para centrar la imagen y hacerla redondeada */
+.center-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px; /* Añade un espacio inferior a la imagen */
+  }
+  
+  .header-image {
+    width: 120px; /* Tamaño deseado de la imagen */
+    height: 120px; /* Tamaño deseado de la imagen */
+    border-radius: 50%; /* Hace que la imagen tenga bordes redondeados */
+    object-fit: cover; /* Ajusta el tamaño de la imagen manteniendo la proporción */
+  }
+  /* Estilos adicionales para el párrafo dentro de custom-item-group */
+.custom-item-group p {
+    margin-bottom: 10px; /* Espaciado inferior para separar los párrafos */
+    padding: 15px;
+    font-size: 12px; /* Tamaño de fuente general para los párrafos */
+    
+  }
+  
+  .custom-item-group strong {
+    font-weight: bold;
+    color: #2a313d; /* Color del texto fuerte (strong) */
+  }
+  
+  .custom-info span {
+    color: #6b6b6b; /* Color del texto de la información */
+  }
+  
