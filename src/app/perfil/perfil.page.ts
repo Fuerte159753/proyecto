@@ -25,7 +25,7 @@ export class PerfilPage implements OnInit {
   obtenerDatosCliente() {
     this.http.get(`http://localhost/perfil.php?idCliente=${this.clienteId}`)
       .subscribe((data: any) => {
-        this.clienteData = data; // Almacenar datos
+        this.clienteData = data;
       }, (error) => {
         console.error('Error al obtener los datos del cliente:', error);
       });

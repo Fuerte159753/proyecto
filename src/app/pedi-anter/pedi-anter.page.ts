@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class PediAnterPage implements OnInit {
   //variables
   clienteId: string = '';
+  pedidos: any[] = [];
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) { }
 
@@ -18,6 +19,18 @@ export class PediAnterPage implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.clienteId = params['idCliente'];
     });
+    this.http.get<any[]>('http://localhost/busqueda.php?cliente_id=' + this.clienteId)
+    .subscribe(
+      (data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          this.pedidos = data;
+        } else {
+          this.pedidos = [];
+        }
+      },
+      (error) => {
+        console.error('Error al obtener los pedidos', error);
+      }
+    );
   }
-
 }
