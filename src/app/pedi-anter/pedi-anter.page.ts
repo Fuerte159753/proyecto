@@ -33,4 +33,7 @@ export class PediAnterPage implements OnInit {
       }
     );
   }
+  irperfil() {
+    this.router.navigate(['/perfil'], { queryParams: { idCliente: this.clienteId } });
+  }
 }
