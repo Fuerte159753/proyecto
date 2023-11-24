@@ -13,11 +13,11 @@
     <ion-text class="welcome-text" style="padding-inline: 10px;">¿Qué desea ordenar hoy, {{ nombreCliente }}?</ion-text>
   </ion-header>
 
-  <form class="form-container">
+  <form class="form-container" (ngSubmit)="enviarPedido()">
     <ion-item class="form-item">
       <ion-label class="custom-label" position="floating">Categoría</ion-label>
-      <ion-select (ionChange)="seleccionCategoria($event)" class="custom-select">
-        <ion-select-option *ngFor="let categoria of categorias" [value]="categoria">
+      <ion-select [(ngModel)]="categoria" name="categoria" (ionChange)="seleccionCategoria($event)" class="custom-select">
+        <ion-select-option *ngFor="let categoria of categorias" [value]="categoria.nombre">
           {{ categoria.nombre }}
         </ion-select-option>
       </ion-select>
@@ -25,7 +25,7 @@
 
     <ion-item *ngIf="subcategorias.length > 0" class="form-item">
       <ion-label class="custom-label" position="floating">Subcategoría</ion-label>
-      <ion-select class="custom-select">
+      <ion-select [(ngModel)]="subcategoria" name="subcategoria" class="custom-select">
         <ion-select-option *ngFor="let subcategoria of subcategorias" [value]="subcategoria">
           {{ subcategoria }}
         </ion-select-option>
@@ -34,18 +34,21 @@
 
     <ion-item *ngIf="mostrarPedido" class="form-item">
       <ion-label class="custom-label" position="stacked">Agrega tu pedido</ion-label>
-      <ion-input (input)="actualizarPedidoTexto($event)" class="custom-input"></ion-input>
+      <ion-input [(ngModel)]="pedidoTexto1" name="pedidoTexto1" (input)="actualizarPedidoTexto($event)" class="custom-input"></ion-input>
     </ion-item>
 
     <ion-item *ngIf="mostrarPedido && pedidoTexto.trim() !== ''">
       <ion-label class="custom-label" position="stacked">Selecciona tu dirección</ion-label>
-      <ion-select placeholder="Selecciona">
+      <ion-select [(ngModel)]="direccion" name="direccion" placeholder="Selecciona">
         <ion-select-option *ngFor="let direccion of direcciones" [value]="direccion">{{ direccion }}</ion-select-option>
       </ion-select>
     </ion-item>
 
-    <ion-button  expand="block" shape="round"class="custom-button" [disabled]="!camposCompletos">Enviar</ion-button>
-    <ion-tabs>
+    <ion-tab-button>
+      <ion-button type="submit" style="width: 150px;" color="success" [disabled]="!camposCompletos">Enviar</ion-button>
+    </ion-tab-button>
+  </form>
+  <ion-tabs>
       <!-- Pestañas en la parte inferior de la página -->
       <ion-tab-bar slot="bottom" class="ion-justify-content-end">
         <ion-tab-button tab="home">
@@ -58,5 +61,4 @@
         </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>
-  </form>
 </ion-content>

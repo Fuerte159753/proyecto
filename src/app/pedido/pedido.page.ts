@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { categorias } from './categorias';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-pedido',
@@ -28,7 +29,7 @@ export class PedidoPage implements OnInit {
   direccion: string = '';
 
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) {
+  constructor(private alertController: AlertController, private route: ActivatedRoute, private http: HttpClient, private router: Router) {
     
    }
    ngOnInit() {
@@ -72,14 +73,16 @@ obtenerDirecciones() {
 }
 
 seleccionCategoria(event: any) {
-  const categoriaSeleccionada = event.detail.value;
+  const nombreCategoriaSeleccionada = event.detail.value;
+  const categoriaSeleccionada = this.categorias.find(categoria => categoria.nombre === nombreCategoriaSeleccionada);
+
   if (categoriaSeleccionada) {
     this.subcategorias = categoriaSeleccionada.subcategorias || [];
-    this.mostrarPedido = this.subcategorias.length > 0; // Mostrar el pedido si hay subcategorías
-    this.validarCamposCompletos(); // Verificar si todos los campos están completos
+    this.mostrarPedido = this.subcategorias.length > 0;
+    this.validarCamposCompletos();
   } else {
-    this.mostrarPedido = false; // Ocultar el pedido si no hay subcategorías seleccionadas
-    this.camposCompletos = false; // Si no hay subcategorías seleccionadas, los campos no están completos
+    this.mostrarPedido = false;
+    this.camposCompletos = false;
   }
 }
 
@@ -108,10 +111,34 @@ enviarPedido() {
 
   this.http.post<any>('http://localhost/registropedido.php', data)
     .subscribe(response => {
-      console.log(response); // Maneja la respuesta del servidor según tu lógica
+      console.log(response);
+
+      // Mostrar una alerta si la respuesta es positiva
+      if (response && response.mensaje == 'registrado') {
+        this.mostrarAlerta();
+      }
     }, error => {
       console.error('Error al enviar el pedido:', error);
     });
+}
+
+async mostrarAlerta() {
+  const alert = await this.alertController.create({
+    header: 'Pedido realizado',
+    message: 'Tu pedido será procesado. Tendrás 5 minutos para cancelarlo.',
+    buttons: [
+      {
+        text: 'OK',
+        handler: () => {
+          // Redireccionar a /cliente con el clienteId adjuntado
+          const clienteId = this.clienteId; // Asegúrate de tener el clienteId disponible aquí
+          this.router.navigate(['/cliente'], { queryParams: { clienteId } });
+        }
+      }
+    ]
+  });
+
+  await alert.present();
 }
 
 }
