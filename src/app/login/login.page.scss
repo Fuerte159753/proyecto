@@ -37,5 +37,10 @@ ion-tolbar{
       border-radius: 20px;
       box-shadow: 1px 8px 8px 0px rgba(0,0,0, 0.05 );
     }
+    .custom-button {
+      width: 150px; // Ajustar según tus preferencias
+      margin: 10px auto; // Centrar vertical y horizontalmente
+      display: block; // Asegurar que el botón ocupe todo el ancho disponible
+    }
     
   }

@@ -1,43 +1,61 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" class="custom-header">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/cliente"></ion-back-button>
+    </ion-buttons>
     <ion-title>{{ mensaje }}</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+
+<ion-content class="custom-content">
   <ion-header class="header-content">
-    <p>Que desea ordenar el dia de hoy {{nombreCliente}}</p>
+    <ion-text class="welcome-text" style="padding-inline: 10px;">¿Qué desea ordenar hoy, {{ nombreCliente }}?</ion-text>
   </ion-header>
-  <form>
-    <ion-item>
-      <ion-label position="floating">Categoría</ion-label>
-      <ion-select (ionChange)="seleccionCategoria($event)">
+
+  <form class="form-container">
+    <ion-item class="form-item">
+      <ion-label class="custom-label" position="floating">Categoría</ion-label>
+      <ion-select (ionChange)="seleccionCategoria($event)" class="custom-select">
         <ion-select-option *ngFor="let categoria of categorias" [value]="categoria">
           {{ categoria.nombre }}
         </ion-select-option>
       </ion-select>
     </ion-item>
-    <ion-item *ngIf="subcategorias.length > 0">
-      <ion-label position="floating">Subcategoría</ion-label>
-      <ion-select>
+
+    <ion-item *ngIf="subcategorias.length > 0" class="form-item">
+      <ion-label class="custom-label" position="floating">Subcategoría</ion-label>
+      <ion-select class="custom-select">
         <ion-select-option *ngFor="let subcategoria of subcategorias" [value]="subcategoria">
           {{ subcategoria }}
         </ion-select-option>
       </ion-select>
     </ion-item>
-    <ion-item *ngIf="mostrarPedido">
-      <ion-label position="stacked">Agrega tu pedido</ion-label>
-      <ion-input (input)="actualizarPedidoTexto($event)"></ion-input>
+
+    <ion-item *ngIf="mostrarPedido" class="form-item">
+      <ion-label class="custom-label" position="stacked">Agrega tu pedido</ion-label>
+      <ion-input (input)="actualizarPedidoTexto($event)" class="custom-input"></ion-input>
     </ion-item>
+
     <ion-item *ngIf="mostrarPedido && pedidoTexto.trim() !== ''">
-      <ion-label position="stacked">Selecciona tu dirección</ion-label>
+      <ion-label class="custom-label" position="stacked">Selecciona tu dirección</ion-label>
       <ion-select placeholder="Selecciona">
         <ion-select-option *ngFor="let direccion of direcciones" [value]="direccion">{{ direccion }}</ion-select-option>
       </ion-select>
     </ion-item>
-    
-    <ion-tab-button>
-      <ion-button style="width: 150px;" color="success" [disabled]="!camposCompletos">Enviar</ion-button>
-    </ion-tab-button>    
+
+    <ion-button  expand="block" shape="round"class="custom-button" [disabled]="!camposCompletos">Enviar</ion-button>
+    <ion-tabs>
+      <!-- Pestañas en la parte inferior de la página -->
+      <ion-tab-bar slot="bottom" class="ion-justify-content-end">
+        <ion-tab-button tab="home">
+          <ion-icon name="person-circle-outline"></ion-icon>
+          Perfil
+        </ion-tab-button>
+        <ion-tab-button tab="settings">
+          <ion-icon name="settings-outline"></ion-icon>
+          Configuración
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
   </form>
 </ion-content>
-

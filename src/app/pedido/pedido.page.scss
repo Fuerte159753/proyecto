@@ -1,0 +1,35 @@
+.custom-header {
+    background-color: #3880ff; 
+    color: #fff; 
+    ion-toolbar {
+        background-color: #3880ff; 
+        padding: 10px; 
+      }
+}
+
+  
+  .custom-content {
+    padding: 20px;
+  }
+  
+  .welcome-text {
+    font-size: 1.3em; 
+    font-weight: bold;
+    text-align: center;
+    margin: 10px auto;
+  }
+  
+  .custom-select {
+    width: 100%; 
+  }
+  
+  .custom-input {
+    width: 100%;
+  }
+  
+  .custom-button {
+    width: 150px;
+    margin: 30px auto; // Centrar vertical y horizontalmente
+    display: block; // Asegurar que el botón ocupe todo el ancho disponible
+  }
+  
