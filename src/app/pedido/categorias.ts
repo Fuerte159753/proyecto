@@ -55,5 +55,11 @@ export const categorias = [
         'Accesorios',
         'Calzado'
       ]
+    },
+    {
+      nombre: 'Otros',
+      subcategorias:[
+        'Otros'
+      ]
     }
   ];  

@@ -22,6 +22,11 @@ export class PedidoPage implements OnInit {
   pedidoTexto: string = '';
   camposCompletos: boolean = false;
 
+  categoria: string = '';
+  subcategoria: string = '';
+  pedidoTexto1: string = '';
+  direccion: string = '';
+
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) {
     
@@ -90,6 +95,23 @@ validarCamposCompletos() {
 
 convertirPrimeraLetraMayuscula(texto: string): string {
   return texto.replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
+enviarPedido() {
+  const data = {
+    categoria: this.categoria,
+    subcategoria: this.subcategoria,
+    pedidoTexto1: this.pedidoTexto1,
+    direccion: this.direccion,
+    clienteId: this.clienteId,
+  };
+
+  this.http.post<any>('http://localhost/registropedido.php', data)
+    .subscribe(response => {
+      console.log(response); // Maneja la respuesta del servidor según tu lógica
+    }, error => {
+      console.error('Error al enviar el pedido:', error);
+    });
 }
 
 }

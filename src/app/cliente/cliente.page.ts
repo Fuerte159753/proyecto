@@ -51,4 +51,11 @@ convertirPrimeraLetraMayuscula(texto: string): string {
 irAPedido() {
   this.router.navigate(['/pedido'], { queryParams: { idCliente: this.clienteId } });
 }
+irperfil() {
+  this.router.navigate(['/perfil'], { queryParams: { idCliente: this.clienteId } });
+}
+irestatus(){
+  this.router.navigate(['/pedi-anter'], {queryParams: { idCliente: this.clienteId } })
+}
+
 }
