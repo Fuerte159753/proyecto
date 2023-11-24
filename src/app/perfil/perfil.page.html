@@ -1,9 +1,16 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>perfil</ion-title>
+    <ion-title>Perfil</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-img src="assets/img/avatar.png" class="header-image" style="width: 110%; height: 50%;"></ion-img>
+  <ion-img src="assets/img/avatar.png" class="header-image" style="width: 20%; height: 20%;"></ion-img>
+  <ion-item-group>
+  <p>Nombre(s): <span>{{ clienteData.nombre }}</span></p>
+  <p>Apellido(s): <span>{{ clienteData.apellido }}</span></p>
+  <p>Telefono: <span>{{ clienteData.telefono }}</span></p>
+  <p>Correo: <span>{{ clienteData.correo }}</span></p>
+  <p>Password: <span>{{ clienteData.password }}</span></p> 
+  </ion-item-group>
 </ion-content>
