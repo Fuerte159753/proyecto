@@ -1,16 +1,16 @@
  //rutas para repartidores
  export const rutas =[
-    'San Isidro',
-    'Caltimacán',
-    'Candelaria',
-    'San Miguel',
-    'Bondhi',
+    'Centro de Tasquillo',
+    'El Calvario',
+    'Nuevo Porvenir',
     'La Vega',
-    'Motho',
-    'Juchitlán',
-    'San Pedro',
-    'Munsi',
-    'Remedios',
-    'Alto Calvario',
-    'San Antonio'
+    'San Antonio',
+    'Candelaria',
+    'Nuevo Arenal',
+    'Rinconada',
+    'Bondhi',
+    'Mutho',
+    'Arbolado',
+    'San Isidro',
+    'Muntzy'
 ]

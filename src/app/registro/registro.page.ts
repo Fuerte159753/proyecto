@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular'; // Asegúrate de importar AlertController
+import { rutas } from './rutas';
 
 @Component({
   selector: 'app-registro',
@@ -16,6 +17,9 @@ export class RegistroPage implements OnInit {
   telefono: string ='';
   correo: string ='';
   password: string ='';
+  rutaSeleccionada: string ='';
+  rutas: string[] = rutas; // Define rutas como una propiedad del componente
+
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -31,5 +35,4 @@ export class RegistroPage implements OnInit {
   }
   ngOnInit() {
   }
-
 }

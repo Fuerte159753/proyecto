@@ -140,7 +140,5 @@ async mostrarAlerta() {
 
   await alert.present();
 }
-irperfil() {
-  this.router.navigate(['/perfil'], { queryParams: { idCliente: this.clienteId } });
-}
+
 }
