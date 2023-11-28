@@ -21,18 +21,40 @@ export class RegistroPage implements OnInit {
   rutas: string[] = rutas; // Define rutas como una propiedad del componente
 
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private alertController: AlertController) {}
 
-  submitForm() {
-    const data = { nombre:this.nombre, apellido: this.apellido, direccion: this.direccion, telefono: this.telefono, correo: this.correo, password: this.password };
-    this.http.post('http://localhost/registromanda.php', data)
-      .subscribe((response) => {
-        console.log('Usuario registrado:', response);
-        this.router.navigate(['/login']); // Redirecciona a la página de inicio
-      }, (error) => {
-        console.error('Error al registrar usuario:', error);
-      });
-  }
+    async submitForm() {
+      // Verifica si algún campo está vacío
+      if (!this.nombre || !this.apellido || !this.rutaSeleccionada || !this.direccion || !this.telefono || !this.correo || !this.password) {
+        const alert = await this.alertController.create({
+          header: 'Campos incompletos',
+          message: 'Por favor, completa todos los campos.',
+          buttons: ['OK']
+        });
+        await alert.present();
+        return; // Detiene el envío del formulario si hay campos vacíos
+      }
+      const data = {
+        nombre: this.nombre,
+        apellido: this.apellido,
+        direccion: this.direccion,
+        telefono: this.telefono,
+        correo: this.correo,
+        password: this.password,
+        rutaSeleccionada: this.rutaSeleccionada,
+      };
+    
+      this.http.post('http://localhost/registromanda.php', data)
+        .subscribe((response) => {
+          console.log('Usuario registrado:', response);
+          this.router.navigate(['/login']); // Redirecciona a la página de inicio
+        }, (error) => {
+          console.error('Error al registrar usuario:', error);
+        });
+    }    
   ngOnInit() {
   }
 }

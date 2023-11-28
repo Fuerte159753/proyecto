@@ -56,7 +56,7 @@ export class LoginPage implements OnInit {
 
         if (response.Tipeuser === 0) {
           // Redirige al repartidor y envía el ID del repartidor
-          this.router.navigate(['/repartidor'], { queryParams: { idRepartidor: response.id } });
+          this.router.navigate(['/repartidor'], { queryParams: { idRe: response.id } });
         } else if (response.Tipeuser === 1) {
           // Redirige al cliente y envía el ID del cliente
           this.router.navigate(['/cliente'], { queryParams: { idCliente: response.id } });
