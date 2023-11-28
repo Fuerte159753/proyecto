@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $row = $resultRepartidores->fetch_assoc();
         // Usuario encontrado en la tabla de repartidores
         if ($row["password"] === $password) {
-            echo json_encode(array("message" => "Inicio de sesión exitoso", "Tipeuser" => 0));
+            echo json_encode(array("message" => "Inicio de sesión exitoso", "Tipeuser" => 0, "id" => $row["repartidor_id"]));
         } else {
             echo json_encode(array("message" => "Verifica tus datos"));
         }

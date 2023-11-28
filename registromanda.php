@@ -24,6 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $telefono = $data->telefono;
     $correo = $data->correo;
     $password = $data->password;
+    $ruta = $data->rutaSeleccionada;
 
     // Obtener el último cliente_id registrado
     $query_last_id = "SELECT MAX(cliente_id) AS max_id FROM clientes";
@@ -33,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $next_id = $last_id + 1;
 
     // Insertar datos en la tabla clientes
-    $sql = "INSERT INTO clientes (cliente_id, nombre, apellido, telefono, correo, password) VALUES ('$next_id', '$nombre','$apellido','$telefono','$correo', '$password')";
+    $sql = "INSERT INTO clientes (cliente_id, nombre, apellido, ruta, telefono, correo, password) VALUES ('$next_id', '$nombre','$apellido','$ruta','$telefono','$correo', '$password')";
 
     if ($conn->query($sql) === TRUE) {
         // Insertar datos en la tabla direcciones
