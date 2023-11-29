@@ -1,0 +1,15 @@
+/* repartidor.page.scss (Estilos de ejemplo) */
+
+ion-content {
+    --background: #f4f4f4;
+  }
+  
+  ion-item[slot="header"] {
+    font-weight: bold;
+  }
+  
+  ion-item[slot="content"] {
+    font-size: 15px;
+    color: #333;
+  }
+  
