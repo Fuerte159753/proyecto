@@ -54,15 +54,15 @@ export class LoginPage implements OnInit {
       .subscribe((response) => {
         console.log(response);
 
-        if (response.Tipeuser === 0) {
+        if (response.Tipeuser == 0) {
           // Redirige al repartidor y envía el ID del repartidor
           this.router.navigate(['/repartidor'], { queryParams: { idRe: response.id } });
-        } else if (response.Tipeuser === 1) {
+        } else if (response.Tipeuser == 1) {
           // Redirige al cliente y envía el ID del cliente
           this.router.navigate(['/cliente'], { queryParams: { idCliente: response.id } });
         } else if (
-          response.message === 'Verifica tus datos' ||
-          response.message === 'Usuario no encontrado'
+          response.message == 'Verifica tus datos' ||
+          response.message == 'Usuario no encontrado'
         ) {
           this.showAlert(response.message);
         }

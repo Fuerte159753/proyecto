@@ -22,11 +22,13 @@ export class PediAnterPage implements OnInit {
     this.http.get<any[]>('http://localhost/busqueda.php?cliente_id=' + this.clienteId)
     .subscribe(
       (data) => {
+        console.log('Datos recibidos:', data); // Agrega este console.log
         if (Array.isArray(data) && data.length > 0) {
           this.pedidos = data;
         } else {
           this.pedidos = [];
         }
+        console.log('Pedidos:', this.pedidos); // Agrega este console.log
       },
       (error) => {
         console.error('Error al obtener los pedidos', error);

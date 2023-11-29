@@ -6,12 +6,9 @@
     <ion-title>Revisa Tus Pedidos</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-searchbar animated="true" placeholder="Realiza tu busqueda"></ion-searchbar>
-  
   <ion-accordion-group *ngIf="pedidos.length > 0; else noPedidos">
-    <ion-accordion *ngFor="let pedido of pedidos">
+    <ion-accordion *ngFor="let pedido of pedidos" [value]="pedido.pedidos_id">
       <ion-item slot="header" color="light">
         <ion-label>
           <h2 class="pedido-info">
@@ -29,24 +26,9 @@
       </div>
     </ion-accordion>
   </ion-accordion-group>
-  
-
   <ng-template #noPedidos>
     <h3>Upss! Parece que todavia no realizas</h3>
     <h3>un pedido</h3>
     <h3>Realiza tu primer pedido con nosotros</h3>
   </ng-template>
-  <ion-tabs>
-    <!-- Pestañas en la parte inferior de la página -->
-    <ion-tab-bar slot="bottom" class="ion-justify-content-end">
-      <ion-tab-button (click)="irperfil()">
-        <ion-icon name="person-circle-outline"></ion-icon>
-        Perfil
-      </ion-tab-button>
-      <ion-tab-button tab="settings">
-        <ion-icon name="settings-outline"></ion-icon>
-        Configuración
-      </ion-tab-button>
-    </ion-tab-bar>
-  </ion-tabs>
 </ion-content>
