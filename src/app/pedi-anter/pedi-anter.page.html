@@ -25,7 +25,9 @@
           <p>Categoría: {{ pedido.detalles[0]?.categoria }}</p>
           <p>Subcategoría: {{ pedido.detalles[0]?.subcategoria }}</p>
           <p>Descripción: {{ pedido.detalles[0]?.descripcion }}</p>
+      
         </ion-label>
+        <ion-button *ngIf="pedido.estado_pedido == 'en espera'" (click)="eliminarPedido(pedido.pedido_id)" expand="block">Cancelar pedido</ion-button>
       </div>
     </ion-accordion>
   </ion-accordion-group>
