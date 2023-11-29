@@ -1,9 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { categorias } from './categorias';
 import { AlertController } from '@ionic/angular';
+
+interface ClienteResponse {
+  nombreCliente: string;
+}
+
+interface PedidoResponse {
+  mensaje: string;
+}
 
 @Component({
   selector: 'app-pedido',
@@ -13,13 +20,12 @@ import { AlertController } from '@ionic/angular';
 export class PedidoPage implements OnInit {
 
   mensaje: string = '';
-  clienteId: string = ''; // Variable para almacenar el ID del cliente
+  clienteId: string = '';
   nombreCliente: string = '';
   direcciones: string[] = [];
   categorias = categorias;
   subcategorias: string[] = [];
   mostrarPedido: boolean = false;
-  pedidoAgregado: boolean = false;
   pedidoTexto: string = '';
   camposCompletos: boolean = false;
 
@@ -28,18 +34,22 @@ export class PedidoPage implements OnInit {
   pedidoTexto1: string = '';
   direccion: string = '';
 
+  constructor(
+    private alertController: AlertController,
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
-  constructor(private alertController: AlertController, private route: ActivatedRoute, private http: HttpClient, private router: Router) {
-    
-   }
-   ngOnInit() {
+  ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      this.clienteId = params['idCliente']; // Obtén el ID del cliente de los parámetros de la URL
+      this.clienteId = params['idCliente'];
       this.obtenerNombreCliente();
       this.obtenerDirecciones();
     });
+
     const hora = new Date().getHours();
-    
+
     if (hora >= 0 && hora < 12) {
       this.mensaje = 'Buenos días';
     } else if (hora >= 12 && hora < 18) {
@@ -50,95 +60,89 @@ export class PedidoPage implements OnInit {
   }
 
   obtenerNombreCliente() {
-    this.http.get<any>('http://localhost/clientepage.php?idCliente=' + this.clienteId)
-    .subscribe(response => {
-      if (response.nombreCliente) {
-        this.nombreCliente = this.convertirPrimeraLetraMayuscula(response.nombreCliente);
-      } else {
-        this.nombreCliente = 'Nombre no encontrado';
-      }
-    }, error => {
-      console.error('Error al obtener el nombre del cliente:', error);
-    });
-}
-obtenerDirecciones() {
-  this.http.get<any[]>('http://localhost/pedido.php?idCliente=' + this.clienteId)
-    .subscribe(response => {
-      if (response && response.length > 0) {
-        this.direcciones = response;
-      }
-    }, error => {
-      console.error('Error al obtener direcciones:', error);
-    });
-}
-
-seleccionCategoria(event: any) {
-  const nombreCategoriaSeleccionada = event.detail.value;
-  const categoriaSeleccionada = this.categorias.find(categoria => categoria.nombre === nombreCategoriaSeleccionada);
-
-  if (categoriaSeleccionada) {
-    this.subcategorias = categoriaSeleccionada.subcategorias || [];
-    this.mostrarPedido = this.subcategorias.length > 0;
-    this.validarCamposCompletos();
-  } else {
-    this.mostrarPedido = false;
-    this.camposCompletos = false;
+    this.http.get<ClienteResponse>('http://localhost/clientepage.php?idCliente=' + this.clienteId)
+      .subscribe(response => {
+        this.nombreCliente = response.nombreCliente ? this.convertirPrimeraLetraMayuscula(response.nombreCliente) : 'Nombre no encontrado';
+      }, error => {
+        console.error('Error al obtener el nombre del cliente:', error);
+      });
   }
-}
 
-actualizarPedidoTexto(event: any) {
-  this.pedidoTexto = event.target.value;
-  this.validarCamposCompletos(); // Verificar si todos los campos están completos
-}
+  obtenerDirecciones() {
+    this.http.get<string[]>('http://localhost/pedido.php?idCliente=' + this.clienteId)
+      .subscribe(response => {
+        this.direcciones = response || [];
+      }, error => {
+        console.error('Error al obtener direcciones:', error);
+      });
+  }
 
-validarCamposCompletos() {
-  // Verificar si todos los campos requeridos están completos
-  this.camposCompletos = this.mostrarPedido && this.pedidoTexto.trim() !== '';
-}
+  seleccionCategoria(event: any) {
+    const nombreCategoriaSeleccionada = event.detail.value;
+    const categoriaSeleccionada = this.categorias.find(categoria => categoria.nombre === nombreCategoriaSeleccionada);
 
-convertirPrimeraLetraMayuscula(texto: string): string {
-  return texto.replace(/\b\w/g, (char) => char.toUpperCase());
-}
+    if (categoriaSeleccionada) {
+      this.subcategorias = categoriaSeleccionada.subcategorias || [];
+      this.mostrarPedido = this.subcategorias.length > 0;
+      this.validarCamposCompletos();
+    } else {
+      this.mostrarPedido = false;
+      this.camposCompletos = false;
+    }
+  }
 
-enviarPedido() {
-  const data = {
-    categoria: this.categoria,
-    subcategoria: this.subcategoria,
-    pedidoTexto1: this.pedidoTexto1,
-    direccion: this.direccion,
-    clienteId: this.clienteId,
-  };
+  actualizarPedidoTexto(event: any) {
+    this.pedidoTexto = event.target.value;
+    this.validarCamposCompletos();
+  }
 
-  this.http.post<any>('http://localhost/registropedido.php', data)
-    .subscribe(response => {
-      console.log(response);
+  validarCamposCompletos() {
+    this.camposCompletos = this.mostrarPedido && this.pedidoTexto.trim() !== '';
+  }
 
-      // Mostrar una alerta si la respuesta es positiva
-      if (response && response.mensaje == 'registrado') {
-        this.mostrarAlerta();
-      }
-    }, error => {
-      console.error('Error al enviar el pedido:', error);
-    });
-}
+  convertirPrimeraLetraMayuscula(texto: string): string {
+    return texto.replace(/\b\w/g, (char) => char.toUpperCase());
+  }
 
-async mostrarAlerta() {
-  const alert = await this.alertController.create({
-    header: 'Pedido realizado',
-    message: 'Tu pedido será procesado. Tendrás 5 minutos para cancelarlo.',
-    buttons: [
-      {
-        text: 'OK',
-        handler: () => {
-          // Redireccionar a /cliente con el clienteId adjuntado
-          const clienteId = this.clienteId; // Asegúrate de tener el clienteId disponible aquí
-          this.router.navigate(['/cliente'], { queryParams: { clienteId } });
+  enviarPedido() {
+    const data = {
+      categoria: this.categoria,
+      subcategoria: this.subcategoria,
+      pedidoTexto1: this.pedidoTexto1,
+      direccion: this.direccion,
+      clienteId: this.clienteId,
+    };
+
+    this.http.post<PedidoResponse>('http://localhost/registropedido.php', data)
+      .subscribe(response => {
+        console.log(response);
+
+        if (response && response.mensaje === 'registrado') {
+          this.mostrarAlerta();
         }
-      }
-    ]
-  });
+      }, error => {
+        console.error('Error al enviar el pedido:', error);
+      });
+  }
 
-  await alert.present();
-}
+  async mostrarAlerta() {
+    try {
+      const alert = await this.alertController.create({
+        header: 'Pedido realizado',
+        message: 'Tu pedido será procesado. Tendrás 5 minutos para cancelarlo.',
+        buttons: [
+          {
+            text: 'OK',
+            handler: () => {
+              this.router.navigate(['/cliente'], { queryParams: { clienteId: this.clienteId } });
+            }
+          }
+        ]
+      });
 
+      await alert.present();
+    } catch (error) {
+      console.error('Error al mostrar la alerta:', error);
+    }
+  }
 }
