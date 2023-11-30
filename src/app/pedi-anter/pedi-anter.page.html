@@ -7,15 +7,8 @@
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
-<<<<<<< HEAD
   <ion-accordion-group *ngIf="pedidos.length > 0; else noPedidos">
     <ion-accordion *ngFor="let pedido of pedidos" [value]="pedido.pedidos_id">
-=======
-  <ion-searchbar [animated]="true" placeholder="Realiza tu búsqueda"></ion-searchbar>
-  
-  <ion-accordion-group *ngIf="pedidos && pedidos.length > 0; else noPedidos">
-    <ion-accordion *ngFor="let pedido of pedidos">
->>>>>>> 3b064094b7c36887f2221c62cf21f08a2bcd84a4
       <ion-item slot="header" color="light">
         <ion-label>
           <h2 class="pedido-info">
@@ -31,7 +24,7 @@
           <p>Descripción: {{ pedido.detalles[0]?.descripcion }}</p>
       
         </ion-label>
-        <ion-button *ngIf="pedido.estado_pedido == 'en espera'" (click)="eliminarPedido(pedido.pedido_id)" expand="block">Cancelar pedido</ion-button>
+        <ion-button (click)="eliminarPedido(pedido.pedido_id)" expand="block">Cancelar pedido</ion-button>
       </div>
     </ion-accordion>
   </ion-accordion-group>
@@ -39,10 +32,4 @@
     <h3>¡Ups! Parece que todavía no realizas un pedido</h3>
     <h3>Realiza tu primer pedido con nosotros</h3>
   </ng-template>
-<<<<<<< HEAD
-=======
-
-
-  
->>>>>>> 3b064094b7c36887f2221c62cf21f08a2bcd84a4
 </ion-content>

@@ -83,20 +83,6 @@ export class LoginPage implements OnInit {
       .subscribe(
         (response) => {
           console.log(response);
-
-<<<<<<< HEAD
-        if (response.Tipeuser == 0) {
-          // Redirige al repartidor y envía el ID del repartidor
-          this.router.navigate(['/repartidor'], { queryParams: { idRe: response.id } });
-        } else if (response.Tipeuser == 1) {
-          // Redirige al cliente y envía el ID del cliente
-          this.router.navigate(['/cliente'], { queryParams: { idCliente: response.id } });
-        } else if (
-          response.message == 'Verifica tus datos' ||
-          response.message == 'Usuario no encontrado'
-        ) {
-          this.showAlert(response.message);
-=======
           if (response.Tipeuser === 0) {
             this.router.navigate(['/repartidor'], { queryParams: { idRe: response.id } });
           } else if (response.Tipeuser === 1) {
@@ -110,7 +96,6 @@ export class LoginPage implements OnInit {
         (error) => {
           this.isButtonDisabled = false; // Habilita el botón en caso de error
           console.error('Error al realizar la solicitud:', error);
->>>>>>> 3b064094b7c36887f2221c62cf21f08a2bcd84a4
         }
       );
   }

@@ -37,6 +37,7 @@ export class RegistroPage implements OnInit {
         await alert.present();
         return; // Detiene el envío del formulario si hay campos vacíos
       }
+      
       const data = {
         nombre: this.nombre,
         apellido: this.apellido,
@@ -45,8 +46,9 @@ export class RegistroPage implements OnInit {
         correo: this.correo,
         password: this.password,
         rutaSeleccionada: this.rutaSeleccionada,
-      };
-    
+      }
+      // Imprimir los datos en la consola antes de enviarlos al servidor
+      console.log('Datos del formulario:', data);
       this.http.post('http://localhost/registromanda.php', data)
         .subscribe((response) => {
           console.log('Usuario registrado:', response);
@@ -54,7 +56,7 @@ export class RegistroPage implements OnInit {
         }, (error) => {
           console.error('Error al registrar usuario:', error);
         });
-    }    
+    }        
   ngOnInit() {
   }
 }
