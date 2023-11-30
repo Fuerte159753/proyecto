@@ -10,7 +10,7 @@
 <ion-content [fullscreen]="true"><ion-accordion-group>
   <ion-accordion *ngFor="let pedido of pedidosPendientes" [value]="pedido.pedido_id">
     <ion-item slot="header" color="tertiary">
-      <ion-label>ID Pedido: {{ pedido.pedido_id }}</ion-label>
+      <ion-label>Pedido: {{ pedido.pedido_id }}</ion-label>
     </ion-item>
     <div class="ion-padding" slot="content">
       <p>Dirección: {{ pedido.direccion }}</p>
@@ -25,6 +25,7 @@
           <p>Categoría: {{ detalle.categoria }}</p>
           <p>Subcategoría: {{ detalle.subcategoria }}</p>
           <p>Descripción: {{ detalle.descripcion }}</p>
+          <button color="success" (click)="marcarPedidoEntregado(pedido.pedido_id)">Entregado</button>
         </div>
         <ion-item *ngIf="pedido.detalles_pedido.length === 0" lines="full">
           <ion-label>
@@ -34,18 +35,4 @@
     </div>
   </ion-accordion>
 </ion-accordion-group>
-
-  <ion-accordion-group>
-    <ion-accordion *ngFor="let pedido of pedidosPendientes" [value]="pedido.pedido_id">
-      <ion-item slot="header" color="tertiary">
-        <ion-label>Pedido: {{pedido.pedido_id}}</ion-label>
-      </ion-item>
-      <div class="ion-padding" slot="content">
-        <p>Nombre: {{pedido.cliente.nombre}}</p>
-        <p>Apellido {{pedido.cliente.apellido}}</p>
-        <p>Telefono {{pedido.cliente.telefono}}</p>
-        <p>Dirección: {{ pedido.direccion }}</p>
-      </div>
-    </ion-accordion>
-  </ion-accordion-group>
 </ion-content>

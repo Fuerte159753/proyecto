@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-repartidor',
@@ -15,11 +15,29 @@ export class RepartidorPage implements OnInit {
   pedidosPendientes: any[] = [];
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) {}
-
+  
+  marcarPedidoEntregado(pedidoId: number) {
+    const url = 'http://localhost/cambio_entre.php';
+    console.log(pedidoId);
+  
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
+    const body = new URLSearchParams();
+    body.set('pedido_id', pedidoId.toString());
+  
+    this.http.post(url, body.toString(), { headers }).subscribe(
+      (response) => {
+        console.log('Respuesta del servidor:', response);
+      },
+      (error) => {
+        console.error('Error al enviar el pedido:', error);
+      }
+    );
+  }
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.repaId = params['idRe'];
-      // Llama a la función para cargar los pedidos pendientes
       this.cargarPedidosPendientes();
     });
     const hora = new Date().getHours();
