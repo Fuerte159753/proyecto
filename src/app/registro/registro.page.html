@@ -1,7 +1,9 @@
 <ion-header [translucent]="true" class="custom-header">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/login"></ion-back-button>
+      <ion-button (click)="navigatelogin()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
     </ion-buttons>
     <ion-title class="custom-title">Registro</ion-title>
   </ion-toolbar>

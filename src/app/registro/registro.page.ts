@@ -57,6 +57,9 @@ export class RegistroPage implements OnInit {
           console.error('Error al registrar usuario:', error);
         });
     }        
+    navigatelogin() {
+      this.router.navigate(['/login']); // Usar paréntesis () en lugar de corchetes []
+    }
   ngOnInit() {
   }
 }

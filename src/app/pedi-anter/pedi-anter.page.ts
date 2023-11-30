@@ -36,6 +36,13 @@ export class PediAnterPage implements OnInit {
       }
     );
   }
+  navigateBackToClientePage() {
+    this.router.navigate(['/cliente'], {
+      queryParams: {
+        idCliente: this.clienteId // Aquí proporciona el valor de clienteId
+      }
+    });
+  }
   getColorByEstado(estado: string): string {
     switch (estado) {
       case 'cancelado':
