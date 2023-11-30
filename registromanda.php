@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $next_id = $last_id + 1;
 
     // Insertar datos en la tabla clientes
-    $sql = "INSERT INTO clientes (cliente_id, nombre, apellido, ruta, telefono, correo, password) VALUES ('$next_id', '$nombre','$apellido','$ruta','$telefono','$correo', '$password')";
+    $sql = "INSERT INTO clientes (cliente_id, nombre, apellido, localidad, telefono, correo, password) VALUES ('$next_id', '$nombre','$apellido','$ruta','$telefono','$correo', '$password')";
 
     if ($conn->query($sql) === TRUE) {
         // Insertar datos en la tabla direcciones
