@@ -55,7 +55,10 @@ irperfil() {
   this.router.navigate(['/perfil'], { queryParams: { idCliente: this.clienteId } });
 }
 irestatus(){
-  this.router.navigate(['/pedi-anter'], {queryParams: { idCliente: this.clienteId } })
+  this.router.navigate(['/pedi-anter'], {queryParams: { idCliente: this.clienteId } });
+}
+iredit(){
+  this.router.navigate(['/edit'], {queryParams: { idC: this.clienteId } });
 }
 
 }

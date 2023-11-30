@@ -20,10 +20,14 @@
       <ion-input type="text" [(ngModel)]="apellido" name="apellido" required class="custom-input"></ion-input>
     </ion-item>
     <ion-item class="custom-item">
-      <ion-label class="custom-label" position="stacked">Selecciona tu dirección</ion-label>
+      <ion-label class="custom-label" position="stacked">Selecciona tu localidad</ion-label>
       <ion-select [(ngModel)]="rutaSeleccionada" name="rutaSeleccionada" required>
         <ion-select-option *ngFor="let ruta of rutas" [value]="ruta">{{ ruta }}</ion-select-option>
       </ion-select>
+    </ion-item> 
+    <ion-item class="custom-item">
+      <ion-label position="floating">Direccion</ion-label>
+      <ion-input type="text" [(ngModel)]="direccion" name="direccion" required class="custom-input"></ion-input>
     </ion-item> 
     <ion-item class="custom-item">
       <ion-label position="floating">Teléfono:</ion-label>

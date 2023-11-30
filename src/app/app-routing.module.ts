@@ -40,8 +40,9 @@ const routes: Routes = [
   {
     path: 'repartidor',
     loadChildren: () => import('./repartidor/repartidor.module').then( m => m.RepartidorPageModule)
-  },  {
-    path: 'edit-per',
+  },
+  {
+    path: 'edit',
     loadChildren: () => import('./edit-per/edit-per.module').then( m => m.EditPerPageModule)
   },
 

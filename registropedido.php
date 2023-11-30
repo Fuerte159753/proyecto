@@ -23,6 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $pedidoTexto1 = $data->pedidoTexto1;
     $direccion = $data->direccion;
     $clienteId = $data->clienteId;
+    $fechaPedido = $data->fechaHora;
 
     // Obtener el último pedido_id y detalle_id
     $sqlUltimoPedido = "SELECT MAX(pedido_id) AS ultimoPedido FROM pedidos";
@@ -35,8 +36,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $rowDetalle = $resultUltimoDetalle->fetch_assoc();
     $ultimoDetalleId = $rowDetalle["ultimoDetalle"] + 1;
 
-    // Insertar en la tabla pedidos
-    $fechaPedido = date("Y-m-d"); // Obtener fecha actual
     $estadoPedido = "en espera";
     $sqlPedido = "INSERT INTO pedidos (pedido_id, cliente_id, fecha_pedido, direccion, estado_pedido) 
                   VALUES ('$ultimoPedidoId', '$clienteId', '$fechaPedido', '$direccion', '$estadoPedido')";

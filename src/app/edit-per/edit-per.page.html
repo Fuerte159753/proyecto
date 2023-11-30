@@ -1,13 +1,70 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" class="custom-header">
   <ion-toolbar>
-    <ion-title>edit_per</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="navigateBackToClientePage()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Edita Tu Perfil</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">edit_per</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-accordion-group>
+    <ion-accordion value="first">
+      <ion-item slot="header" color="light">
+        <ion-label>Edita Tu Perfil</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <!-- Mostrar datos del cliente -->
+        <ion-item class="custom-item">
+          <ion-input aria-label="Success input" color="success" type="text" label="Nombre(s):" placeholder="{{clienteData.nombre}}" class="custom-input" [(ngModel)]="clienteData.nombre" name="nombre"></ion-input>
+        </ion-item>
+        <ion-item class="custom-item">
+          <ion-input aria-label="Success input" color="success" type="text" label="Apellido(s):" placeholder="{{clienteData.apellido}}" class="custom-input" [(ngModel)]="clienteData.apellido" name="apellido"></ion-input>
+        </ion-item>
+        <ion-item class="custom-item">
+          <ion-input aria-label="Success input" color="success" type="number" label="Teléfono:" placeholder="{{clienteData.telefono}}" class="custom-input" [(ngModel)]="clienteData.telefono" name="telefono"></ion-input>
+        </ion-item>
+        <ion-item class="custom-item">
+          <ion-input aria-label="Success input" color="success" type="text" label="Contraseña:" placeholder="{{clienteData.password}}" class="custom-input" [(ngModel)]="clienteData.password" name="password"></ion-input>
+        </ion-item>
+        <br>
+        <!-- Botón para actualizar perfil -->
+        <ion-button (click)="actualizarPerfil()" expand="full" shape="round" color="success" class="custom-button">Actualizar</ion-button>
+      </div>
+    </ion-accordion>
+    <ion-accordion value="second">
+      <ion-item slot="header" color="light">
+        <ion-label>Agrega Otra Direccion</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-header><h6>Nueva Dirección</h6></ion-header>
+        <form (ngSubmit)="agregarNuevaDireccion()">
+          <ion-item class="custom-item">
+            <ion-label position="floating">Direccion</ion-label>
+            <ion-input [(ngModel)]="nuevaDireccion" name="nuevaDireccion" aria-label="Success input" color="success" type="text" class="custom-input"></ion-input>
+          </ion-item>
+
+          <ion-button type="submit" expand="full"  shape="round" color="success" class="custom-button">Guardar</ion-button>
+        </form>
+      </div>
+    </ion-accordion>
+    <ion-accordion value="elimina">
+      <ion-item slot="header" color="light">
+        <ion-label>Elimina Una Direccion</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-label>{{direData.id_dire}} {{direData.direccion}}   <ion-button color="danger">eliminar</ion-button></ion-label>
+      </div>
+    </ion-accordion>
+    <ion-accordion value="eliminaper">
+      <ion-item slot="header" color="light">
+        <ion-label>Elimina tu perfil</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-button>ELIMINAR</ion-button>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
 </ion-content>

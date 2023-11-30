@@ -1,0 +1,31 @@
+.custom-header {
+    ion-toolbar {
+      background-color: #3880ff; // Cambia el color de fondo según tu diseño
+      padding: 10px; // Ajusta el espaciado según tus preferencias
+    }
+  
+    .custom-title {
+      color: #0f0d0d; // Cambia el color del texto según tu diseño
+    }
+  }
+  
+  .custom-content {
+    padding: 30px; // Ajusta el espaciado según tus preferencias
+  }
+  
+  .custom-form {
+    max-width: 400px; // Ajusta el ancho máximo según tus preferencias
+    margin: 0 auto; // Centra el formulario horizontalmente
+  }
+  
+  .custom-item {
+    margin-bottom: 16px; // Ajusta el espaciado entre elementos según tus preferencias
+  }
+  
+
+  .custom-button {
+    width: 150px; // Ajustar según tus preferencias
+    margin: 10px auto; // Centrar vertical y horizontalmente
+    display: block; // Asegurar que el botón ocupe todo el ancho disponible
+  }
+  
