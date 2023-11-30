@@ -21,6 +21,7 @@ export class EditPerPage implements OnInit {
   password: string = '';
   originalData: any = {};
   nuevaDireccion: string = '';
+  direcciones: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -33,7 +34,54 @@ export class EditPerPage implements OnInit {
         this.clienteId = params['idC'];
         this.obtenerDatosCliente();
         this.obtenerDireccion();
+        this.route.queryParams.subscribe(params => {
+          this.clienteId = params['idC'];
+          this.obtenerDireccionesCliente();
+        });
       });
+    }
+    eliminarDireccion(idDireccion: number) {
+      this.mostrarConfirmacion1('Confirmación', '¿Está seguro de que desea modificar su perfil?')
+        .then((confirmacion) => {
+          if (confirmacion) {
+            this.http.post('http://localhost/elimi_dire.php', { id_dire: idDireccion })
+              .subscribe((response: any) => {
+                console.log(response);
+                this.obtenerDireccionesCliente();
+                window.location.reload(); // Recargar la página después de eliminar la dirección
+              }, (error) => {
+                console.error('Error al eliminar dirección:', error);
+              });
+          }
+        });
+    }
+    async mostrarConfirmacion1(titulo: string, mensaje: string): Promise<boolean> {
+      return new Promise(async (resolve) => {
+        const confirm = await this.alertController.create({
+          header: titulo,
+          message: mensaje,
+          buttons: [
+            {
+              text: 'No',
+              handler: () => resolve(false)
+            },
+            {
+              text: 'Sí',
+              handler: () => resolve(true)
+            }
+          ]
+        });
+        await confirm.present();
+      });
+    }
+       
+    obtenerDireccionesCliente() {
+      this.http.get<any[]>(`http://localhost/bus_dire.php?cliente_id=${this.clienteId}`)
+        .subscribe((data: any[]) => {
+          this.direcciones = data;
+        }, (error) => {
+          console.error('Error al obtener las direcciones:', error);
+        });
     }
   agregarNuevaDireccion() {
       const datosDireccion = {

@@ -55,9 +55,18 @@
         <ion-label>Elimina Una Direccion</ion-label>
       </ion-item>
       <div class="ion-padding" slot="content">
-        <ion-label>{{direData.id_dire}} {{direData.direccion}}   <ion-button color="danger">eliminar</ion-button></ion-label>
+        <ng-container *ngFor="let direccion of direcciones">
+          <ion-label>
+            <p>{{ direccion.id_dire }} {{ direccion.direccion }}
+              <ion-button (click)="eliminarDireccion(direccion.id_dire)" color="danger">Eliminar</ion-button>
+            </p>
+          </ion-label>
+        </ng-container>
+        <div *ngIf="direcciones.length === 0">
+          <p>No hay direcciones disponibles para este cliente.</p>
+        </div>
       </div>
-    </ion-accordion>
+    </ion-accordion>           
     <ion-accordion value="eliminaper">
       <ion-item slot="header" color="light">
         <ion-label>Elimina tu perfil</ion-label>
