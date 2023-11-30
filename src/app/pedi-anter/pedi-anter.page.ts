@@ -13,8 +13,6 @@ export class PediAnterPage implements OnInit {
   //variables
   clienteId: string = '';
   pedidos: any[] = [];
-  pedidoId: string= '';
-
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router, private alertController: AlertController) { }
 
