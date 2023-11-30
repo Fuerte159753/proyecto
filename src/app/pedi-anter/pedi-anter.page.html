@@ -6,10 +6,11 @@
     <ion-title>Revisa Tus Pedidos</ion-title>
   </ion-toolbar>
 </ion-header>
+
 <ion-content [fullscreen]="true">
   <ion-accordion-group *ngIf="pedidos.length > 0; else noPedidos">
     <ion-accordion *ngFor="let pedido of pedidos" [value]="pedido.pedidos_id">
-      <ion-item slot="header" color="light">
+      <ion-item slot="header" [color]="getColorByEstado(pedido.estado_pedido)">
         <ion-label>
           <h2 class="pedido-info">
             <ion-icon name="calendar"></ion-icon> {{ pedido.fecha_pedido }}
@@ -22,9 +23,13 @@
           <p>Categoría: {{ pedido.detalles[0]?.categoria }}</p>
           <p>Subcategoría: {{ pedido.detalles[0]?.subcategoria }}</p>
           <p>Descripción: {{ pedido.detalles[0]?.descripcion }}</p>
-      
         </ion-label>
-        <ion-button (click)="eliminarPedido(pedido.pedido_id)" expand="block">Cancelar pedido</ion-button>
+          <!-- ... (resto del código) ... -->
+          <ion-button *ngIf="pedido.estado_pedido === 'en espera'" 
+                      (click)="eliminarPedido(pedido.pedido_id)"
+                      expand="block">
+            Cancelar pedido
+          </ion-button>
       </div>
     </ion-accordion>
   </ion-accordion-group>

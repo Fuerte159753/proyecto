@@ -13,8 +13,6 @@ export class PediAnterPage implements OnInit {
   //variables
   clienteId: string = '';
   pedidos: any[] = [];
-  pedidoId: string= '';
-
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router, private alertController: AlertController) { }
 
@@ -38,12 +36,25 @@ export class PediAnterPage implements OnInit {
       }
     );
   }
-
-
-
+  getColorByEstado(estado: string): string {
+    switch (estado) {
+      case 'cancelado':
+        return 'danger'; // Rojo
+      case 'en espera':
+        return 'warning'; // Amarillo
+      case 'pendiente':
+        return 'primary'; // Azul
+      case 'entregado':
+        return 'success'; // Verde
+      default:
+        return 'medium';
+    }
+  }
   eliminarPedido(pedidoId: string) {
-    const url = 'http://localhost/cancelar_pedido.php';
-  
+    console.log('ID del pedido:', pedidoId);
+    const url = `http://localhost/cancelar_pedido.php?pedido_id=${pedidoId}`;
+    console.log('URL con ID adjuntado:', url);
+
     const presentAlertRedError = async () => {
       const alertRedError = await this.alertController.create({
         header: 'Error de Red',
@@ -57,11 +68,20 @@ export class PediAnterPage implements OnInit {
       const alertPedidoCancelado = await this.alertController.create({
         header: 'Pedido Cancelado',
         message: 'El pedido ha sido cancelado exitosamente.',
-        buttons: ['Aceptar']
+        buttons: [
+          {
+            text: 'Aceptar',
+            handler: () => {
+              // Esperar un breve momento antes de recargar la página
+              setTimeout(async () => {
+                await window.location.reload();
+              }, 500); // Por ejemplo, espera medio segundo (500 ms) antes de recargar
+            }
+          }
+        ]
       });
       await alertPedidoCancelado.present();
     };
-  
     const presentAlertError = async () => {
       const alertError = await this.alertController.create({
         header: 'Error',
@@ -86,7 +106,7 @@ export class PediAnterPage implements OnInit {
         {
           text: 'Aceptar',
           handler: async () => {
-            this.http.post(url, { pedidoId }).subscribe(
+            this.http.post(url, { pedidoId: pedidoId }).subscribe(
               async (response: any) => {
                 if (response.success) {
                   console.log('Pedido cancelado exitosamente');
