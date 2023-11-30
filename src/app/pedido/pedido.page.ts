@@ -37,7 +37,7 @@ export class PedidoPage implements OnInit {
       this.obtenerDirecciones();
     });
     const hora = new Date().getHours();
-    if (hora >= 0 && hora < 12) {
+    if (hora >= 6 && hora < 12) {
       this.mensaje = 'Buenos días';
     } else if (hora >= 12 && hora < 18) {
       this.mensaje = 'Buenas tardes';
@@ -86,12 +86,33 @@ export class PedidoPage implements OnInit {
     this.validarCamposCompletos();
   }
   validarCamposCompletos() {
-    this.camposCompletos = this.mostrarPedido && this.pedidoTexto.trim() !== '';
+  if (this.mostrarPedido) {
+    if (this.categoria === 'Otros') {
+      // Si la categoría es "Otros", no requerimos la subcategoría
+      this.camposCompletos = this.pedidoTexto.trim() !== '' && this.direccion !== '';
+    } else {
+      // Para otras categorías, todos los campos deben estar completos
+      this.camposCompletos = this.pedidoTexto.trim() !== '' && this.direccion !== '' && this.subcategoria !== '';
+    }
+  } else {
+    this.camposCompletos = false;
+  }
+}
+  async mostrarAlertaCamposIncompletos() {
+    const alert = await this.alertController.create({
+      header: 'Campos incompletos',
+      message: 'Por favor, completa todos los campos obligatorios.',
+      buttons: ['OK']
+    });
+    await alert.present();
   }
   convertirPrimeraLetraMayuscula(texto: string): string {
     return texto.replace(/\b\w/g, (char) => char.toUpperCase());
   }
   enviarPedido() {
+  this.validarCamposCompletos(); // Validar campos antes de enviar
+
+  if (this.camposCompletos) {
     const fechaHoraActual = new Date();
     // Obtener año, mes y día
     const year = fechaHoraActual.getFullYear();
@@ -123,6 +144,10 @@ export class PedidoPage implements OnInit {
       }, error => {
         console.error('Error al enviar el pedido:', error);
       });
+      } else {
+    // Mostrar alerta solo si los campos están incompletos
+    this.mostrarAlertaCamposIncompletos();
+  }
   }
   navigateBackToClientePage() {
     this.router.navigate(['/cliente'], {
