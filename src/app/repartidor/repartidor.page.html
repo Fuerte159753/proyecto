@@ -30,15 +30,20 @@
           <button class="boton ion-button ion-shape-round" (click)="marcarPedidoEntregado(pedido.pedido_id)">Entregado</button>
           <!--<button class="boton" shape="round" (click)="marcarPedidoEntregado(pedido.pedido_id)">Entregado</button>-->
         </div>
-        <ion-item *ngIf="pedido.detalles_pedido.length === 0" lines="full">
-          <ion-label>
-            Aun no hay detalles para este pedido.
-          </ion-label>
-        </ion-item>
+        
     </div>
   </ion-accordion>
 </ion-accordion-group>
+  <ion-label>
+    Aun no hay detalles para este pedido.
+  </ion-label>
+</ion-item>
 </ion-content>
+
+
+
+
+
 
 <!--<ion-content [fullscreen]="true"><ion-accordion-group>
   <ion-accordion *ngFor="let pedido of pedidosPendientes" [value]="pedido.pedido_id">

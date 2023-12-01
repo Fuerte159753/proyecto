@@ -17,18 +17,18 @@ export class RepartidorPage implements OnInit {
   constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) {}
   
   marcarPedidoEntregado(pedidoId: number) {
-    const url = 'http://localhost/cambio_entre.php';
+    const url = 'https://mandaditos.proyectoinutvm.com/cambio_entre.php';
     console.log(pedidoId);
   
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded'
-    });
-    const body = new URLSearchParams();
-    body.set('pedido_id', pedidoId.toString());
-  
-    this.http.post(url, body.toString(), { headers }).subscribe(
-      (response) => {
+    const formDatos = new FormData();
+    formDatos.append('pedido_id', pedidoId.toString());
+    
+    this.http.post(url, formDatos).subscribe(
+      (response: any) => {
         console.log('Respuesta del servidor:', response);
+         if(response.success) {
+            this.cargarPedidosPendientes();
+         }
       },
       (error) => {
         console.error('Error al enviar el pedido:', error);
@@ -51,7 +51,7 @@ export class RepartidorPage implements OnInit {
   }
 
   cargarPedidosPendientes() {
-    this.http.get<any[]>(`http://localhost/buscar_pedido_repartidor.php?repartidorId=${this.repaId}`)
+    this.http.get<any[]>(`https://mandaditos.proyectoinutvm.com/buscar_pedido_repartidor.php?repartidorId=${this.repaId}`)
       .subscribe(
         (data) => {
           this.pedidosPendientes = data;
