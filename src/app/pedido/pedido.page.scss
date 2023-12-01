@@ -32,4 +32,17 @@
     margin: 30px auto; // Centrar vertical y horizontalmente
     display: block; // Asegurar que el botón ocupe todo el ancho disponible
   }
+  .div{
+    text-align: center;
+    color: #000000;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .center-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Establece la altura del contenedor al 100% del alto de la ventana */
+  }
   

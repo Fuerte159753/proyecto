@@ -9,40 +9,42 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="custom-content">
+<ion-content class="custom-content" class="custom-content center-content">
+  <div class="div">
   <ion-header class="header-content">
     <br>
-    <ion-text class="welcome-text" style="padding-inline: 10px;">¿Qué vas a ordenar hoy {{ nombreCliente }}?</ion-text>
+    <ion-text class="welcome-text" style="padding: 10%;">¿Qué vas a ordenar hoy {{ nombreCliente }}?</ion-text>
   </ion-header>
   <form class="form-container" (ngSubmit)="enviarPedido()">
     <ion-item class="form-item">
-      <ion-label class="custom-label" position="floating">Categoría</ion-label>
-      <ion-select [(ngModel)]="categoria" name="categoria" (ionChange)="seleccionCategoria($event)" class="custom-select">
+      <ion-label class="custom-label" style="text-align: center; padding: 5%;" position="floating" >Categoría</ion-label>
+      <ion-select [(ngModel)]="categoria" style="text-align: center;" name="categoria" (ionChange)="seleccionCategoria($event)" class="custom-select">
         <ion-select-option *ngFor="let categoria of categorias" [value]="categoria.nombre">
           {{ categoria.nombre }}
         </ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item *ngIf="subcategorias.length > 0" class="form-item">
-      <ion-label class="custom-label" position="floating">Subcategoría</ion-label>
-      <ion-select [(ngModel)]="subcategoria" name="subcategoria" class="custom-select">
-        <ion-select-option *ngFor="let subcategoria of subcategorias" [value]="subcategoria">
+      <ion-label class="custom-label" style="text-align: center;" position="floating">Subcategoría</ion-label>
+      <ion-select [(ngModel)]="subcategoria" style="text-align: center;" name="subcategoria" class="custom-select">
+        <ion-select-option *ngFor="let subcategoria of subcategorias"  [value]="subcategoria">
           {{ subcategoria }}
         </ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item *ngIf="mostrarPedido" class="form-item">
-      <ion-label class="custom-label" position="stacked">Agrega tu pedido</ion-label>
-      <ion-input [(ngModel)]="pedidoTexto1" name="pedidoTexto1" (input)="actualizarPedidoTexto($event)" class="custom-input"></ion-input>
+      <ion-label class="custom-label" style="text-align: center;" position="stacked">Agrega tu pedido</ion-label>
+      <ion-input [(ngModel)]="pedidoTexto1" style="text-align: center;" name="pedidoTexto1" (input)="actualizarPedidoTexto($event)" class="custom-input"></ion-input>
     </ion-item>
     <ion-item *ngIf="mostrarPedido && pedidoTexto.trim() !== ''">
-      <ion-label class="custom-label" position="stacked">Selecciona tu dirección</ion-label>
-      <ion-select [(ngModel)]="direccion" name="direccion" placeholder="Selecciona">
-        <ion-select-option *ngFor="let direccion of direcciones" [value]="direccion">{{ direccion }}</ion-select-option>
+      <ion-label class="custom-label" style="text-align: center;" position="stacked">Selecciona tu dirección</ion-label>
+      <ion-select [(ngModel)]="direccion" style="text-align: center;" name="direccion" placeholder="Selecciona">
+        <ion-select-option  *ngFor="let direccion of direcciones" [value]="direccion">{{ direccion }}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-tab-button>
-      <ion-button type="submit" style="width: 150px;" color="success">Enviar</ion-button>
+      <ion-button type="submit" style="width: 250px; height: 50px; padding: 50px;" color="success">Enviar</ion-button>
     </ion-tab-button>
   </form>
+</div>
 </ion-content>
