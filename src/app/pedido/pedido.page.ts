@@ -46,7 +46,7 @@ export class PedidoPage implements OnInit {
     }
   }
   obtenerNombreCliente() {
-    this.http.get<ClienteResponse>('http://localhost/clientepage.php?idCliente=' + this.clienteId)
+    this.http.get<ClienteResponse>('https://mandaditos.proyectoinutvm.com/clientepage.php?idCliente=' + this.clienteId)
       .subscribe(response => {
         this.nombreCliente = response.nombreCliente ? this.convertirPrimeraLetraMayuscula(response.nombreCliente) : 'Nombre no encontrado';
       }, error => {
@@ -54,7 +54,7 @@ export class PedidoPage implements OnInit {
       });
   }
   obtenerDirecciones() {
-    this.http.get<string[]>('http://localhost/pedido.php?idCliente=' + this.clienteId)
+    this.http.get<string[]>('https://mandaditos.proyectoinutvm.com/pedido.php?idCliente=' + this.clienteId)
       .subscribe(response => {
         this.direcciones = response || [];
       }, error => {
@@ -134,7 +134,7 @@ export class PedidoPage implements OnInit {
       fechaHora: fechaHoraFormateada
     };
     console.log('Datos a enviar:', data); // Imprimir los datos en la consola
-    this.http.post<PedidoResponse>('http://localhost/registropedido.php', data)
+    this.http.post<PedidoResponse>('https://mandaditos.proyectoinutvm.com/registropedido.php', data)
       .subscribe(response => {
         console.log('Respuesta del servidor:', response);
   
@@ -159,8 +159,8 @@ export class PedidoPage implements OnInit {
   async mostrarAlerta() {
     try {
       const alert = await this.alertController.create({
-        header: 'Pedido realizado',
-        message: 'Tu pedido será procesado. Tendrás 5 minutos para cancelarlo.',
+        header: 'Éxito',
+        message: 'Se agregó el pedido exitosamente',
         buttons: [
           {
             text: 'OK',

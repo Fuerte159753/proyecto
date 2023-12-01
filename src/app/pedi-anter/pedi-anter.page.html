@@ -11,7 +11,7 @@
 
 <ion-content [fullscreen]="true">
   <ion-accordion-group *ngIf="pedidos.length > 0; else noPedidos">
-    <ion-accordion *ngFor="let pedido of pedidos" [value]="pedido.pedidos_id">
+    <ion-accordion *ngFor="let pedido of pedidos" >
       <ion-item slot="header" [color]="getColorByEstado(pedido.estado_pedido)">
         <ion-label>
           <h2 class="pedido-info">

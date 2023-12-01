@@ -40,21 +40,35 @@ export class EditPerPage implements OnInit {
         });
       });
     }
+
     eliminarDireccion(idDireccion: number) {
       this.mostrarConfirmacion1('Confirmación', '¿Está seguro de que desea modificar su perfil?')
         .then((confirmacion) => {
           if (confirmacion) {
-            this.http.post('http://localhost/elimi_dire.php', { id_dire: idDireccion })
+
+            const formDatos = new FormData();
+            formDatos.append('id_dire', idDireccion.toString());
+      
+            this.http.post('https://mandaditos.proyectoinutvm.com/elimi_dire.php', formDatos)
               .subscribe((response: any) => {
-                console.log(response);
-                this.obtenerDireccionesCliente();
-                window.location.reload(); // Recargar la página después de eliminar la dirección
+                //window.location.reload(); 
+                if(response.success){
+           
+                  this.direcciones = []
+                  this.obtenerDireccionesCliente();
+                  this.mostrarAlerta('Éxito', 'Dirección eliminada correctamente.');
+            
+             
+                }else{
+                  this.mostrarAlerta('Error', 'Ocurrió un error al eliminar la dirección.');
+                }
               }, (error) => {
                 console.error('Error al eliminar dirección:', error);
               });
           }
         });
     }
+
     async mostrarConfirmacion1(titulo: string, mensaje: string): Promise<boolean> {
       return new Promise(async (resolve) => {
         const confirm = await this.alertController.create({
@@ -76,32 +90,40 @@ export class EditPerPage implements OnInit {
     }
        
     obtenerDireccionesCliente() {
-      this.http.get<any[]>(`http://localhost/bus_dire.php?cliente_id=${this.clienteId}`)
+      this.http.get<any[]>(`https://mandaditos.proyectoinutvm.com/bus_dire.php?cliente_id=${this.clienteId}`)
         .subscribe((data: any[]) => {
           this.direcciones = data;
         }, (error) => {
           console.error('Error al obtener las direcciones:', error);
         });
     }
+
   agregarNuevaDireccion() {
-      const datosDireccion = {
-          cliente_id: this.clienteId,
-          direccion: this.nuevaDireccion
-      };
-      console.log('Datos a enviar al servidor:', datosDireccion);
-      const headers = new HttpHeaders().set('Content-Type', 'application/json');
-      this.http.post('http://localhost/insert_dire.php', datosDireccion, { headers })
+      const formDatos = new FormData();
+      formDatos.append('cliente_id', this.clienteId);
+      formDatos.append('direccion', this.nuevaDireccion);
+
+      this.http.post('https://mandaditos.proyectoinutvm.com/insert_dire.php', formDatos)
           .subscribe((response: any) => {
-              console.log(response);
+
+              if(response.success) {
+                this.mostrarAlerta('Éxito', 'Dirección agregada correctamente');
+                this.obtenerDireccionesCliente();
+                this.nuevaDireccion = '';
+              }else{
+                this.mostrarAlerta('Error', 'Ocurrió un error al agregar dirección.');
+              }
+
           }, (error) => {
               console.error('Error al agregar dirección:', error);
           });
-  }    
+  }  
+
   navigateBackToClientePage() {
     this.router.navigate(['/cliente'], { queryParams: { idCliente: this.clienteId } });
   }
   obtenerDatosCliente() {
-    this.http.get(`http://localhost/perfil.php?idCliente=${this.clienteId}`)
+    this.http.get(`https://mandaditos.proyectoinutvm.com/perfil.php?idCliente=${this.clienteId}`)
       .subscribe((data: any) => {
         this.clienteData = data;
         this.originalData = { ...data };
@@ -110,7 +132,7 @@ export class EditPerPage implements OnInit {
       });
   }
   obtenerDireccion(){
-    this.http.get(`http://localhost/per_dire.php?idCliente=${this.clienteId}`)
+    this.http.get(`https://mandaditos.proyectoinutvm.com/per_dire.php?idCliente=${this.clienteId}`)
       .subscribe((data: any) => {
         this.direData = data;
       }, (error) => {
@@ -129,19 +151,17 @@ export class EditPerPage implements OnInit {
         return;
     }
 
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    const formDatos = new FormData();
+    formDatos.append('id', this.clienteId);
+    formDatos.append('nombre', this.clienteData.nombre);
+    formDatos.append('apellido', this.clienteData.apellido);
+    formDatos.append('telefono', this.clienteData.telefono);
+    formDatos.append('password', this.clienteData.password);
 
-    const datosCliente = {
-        id: this.clienteId,
-        nombre: this.clienteData.nombre,
-        apellido: this.clienteData.apellido,
-        telefono: this.clienteData.telefono,
-        password: this.clienteData.password
-    };
-    this.http.post('http://localhost/actualizar_perfil.php', datosCliente, { headers, responseType: 'text' })
+    this.http.post('https://mandaditos.proyectoinutvm.com/actualizar_perfil.php', formDatos)
     .subscribe((response: any) => {
         console.log(response); // Mostrar la respuesta en la consola
-        if (response && response.includes('Datos actualizados correctamente')) {
+        if (response.success) {
             this.mostrarAlerta('Éxito', 'Perfil actualizado correctamente.');
         } else {
             this.mostrarAlerta('Error', 'Ocurrió un error al actualizar el perfil.');

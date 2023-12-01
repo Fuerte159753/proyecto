@@ -33,7 +33,7 @@ export class ClientePage implements OnInit {
   }
 
   obtenerNombreCliente() {
-    this.http.get<any>('http://localhost/clientepage.php?idCliente=' + this.clienteId)
+    this.http.get<any>('https://mandaditos.proyectoinutvm.com/clientepage.php?idCliente=' + this.clienteId)
     .subscribe(response => {
       if (response.nombreCliente) {
         this.nombreCliente = this.convertirPrimeraLetraMayuscula(response.nombreCliente);

@@ -70,43 +70,46 @@ export class LoginPage implements OnInit {
       return;
     }
 
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const data = {
-      Correo: this.miFormulario.value.Correo,
-      password: this.miFormulario.value.password,
-    };
+  
 
     await this.showLoading();
 
-    this.http
-      .post<LoginResponse>('http://localhost/ConManda.php', JSON.stringify(data), {
-        headers: headers,
-        observe: 'response' // Esto permite obtener la respuesta completa, incluyendo el código de estado HTTP
-      })
-      .subscribe(
-        (response) => {
-          console.log(response);
-          if (response.body && response.body.Tipeuser === 0) {
-            this.router.navigate(['/repartidor'], { queryParams: { idRe: response.body.id } });
-          } else if (response.body && response.body.Tipeuser === 1) {
-            this.router.navigate(['/cliente'], { queryParams: { idCliente: response.body.id } });
-          } else {
-            // Mostrar la alerta si la contraseña es incorrecta o el usuario no fue encontrado
-            this.showAlert('Datos incorrectos. Verifícalos.');
-          }
 
-          this.isButtonDisabled = false;
-        },
-        (error) => {
-          this.isButtonDisabled = false;
-          if (error.status === 401) {
-            // Código 401 indica contraseña incorrecta
-            this.showAlert('Verifica tus datos. Contraseña incorrecta.');
-          } else {
-            console.error('Error al realizar la solicitud:', error);
-          }
+    const url = 'https://mandaditos.proyectoinutvm.com/ConManda.php';
+
+    const formDatos = new FormData();
+    formDatos.append('txtUsuario', this.miFormulario.value.Correo);
+    formDatos.append('txtContrasena', this.miFormulario.value.password);
+
+    this.http.post(url, formDatos).subscribe(
+      (response: any) => {
+
+
+        console.log(response);
+       
+        if (response && response.Tipeuser === 0) {
+          this.router.navigate(['/repartidor'], { queryParams: { idRe: response.id } });
+        } else if (response && response.Tipeuser === 1) {
+          this.router.navigate(['/cliente'], { queryParams: { idCliente: response.id } });
+        } else {
+          // Mostrar la alerta si la contraseña es incorrecta o el usuario no fue encontrado
+          this.showAlert('Datos incorrectos. Verifícalos.');
+        } 
+
+        this.isButtonDisabled = false;
+         
+      },
+      (error) => {
+        this.isButtonDisabled = false;
+        if (error.status === 401) {
+          // Código 401 indica contraseña incorrecta
+          this.showAlert('Verifica tus datos. Contraseña incorrecta.');
+        } else {
+          console.error('Error al realizar la solicitud:', error);
         }
-      );
+      }
+    );
+
   }
 
   ngOnInit() {}

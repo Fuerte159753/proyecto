@@ -57,7 +57,7 @@
       <div class="ion-padding" slot="content">
         <ng-container *ngFor="let direccion of direcciones">
           <ion-label>
-            <p>{{ direccion.id_dire }} {{ direccion.direccion }}
+            <p>{{ direccion.direccion }}
               <ion-button (click)="eliminarDireccion(direccion.id_dire)" color="danger">Eliminar</ion-button>
             </p>
           </ion-label>

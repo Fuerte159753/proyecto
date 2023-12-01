@@ -38,7 +38,7 @@ export class RegistroPage implements OnInit {
         return; // Detiene el envío del formulario si hay campos vacíos
       }
       
-      const data = {
+      /* const data = {
         nombre: this.nombre,
         apellido: this.apellido,
         direccion: this.direccion,
@@ -46,10 +46,21 @@ export class RegistroPage implements OnInit {
         correo: this.correo,
         password: this.password,
         rutaSeleccionada: this.rutaSeleccionada,
-      }
+      } */
+
+      const formDatos = new FormData();
+      formDatos.append('nombre', this.nombre);
+      formDatos.append('apellido', this.apellido);
+      formDatos.append('direccion', this.direccion);
+      formDatos.append('telefono', this.telefono);
+      formDatos.append('correo', this.correo);
+      formDatos.append('password', this.password);
+      formDatos.append('rutaSeleccionada', this.rutaSeleccionada);
+
+
       // Imprimir los datos en la consola antes de enviarlos al servidor
-      console.log('Datos del formulario:', data);
-      this.http.post('http://localhost/registromanda.php', data)
+     // console.log('Datos del formulario:', data);
+      this.http.post('https://mandaditos.proyectoinutvm.com/registromanda.php', formDatos)
         .subscribe((response) => {
           console.log('Usuario registrado:', response);
           this.router.navigate(['/login']); // Redirecciona a la página de inicio

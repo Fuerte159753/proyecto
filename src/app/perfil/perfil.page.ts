@@ -30,7 +30,7 @@ export class PerfilPage implements OnInit {
   }
 
   obtenerDatosCliente() {
-    this.http.get(`http://localhost/perfil.php?idCliente=${this.clienteId}`)
+    this.http.get(`https://mandaditos.proyectoinutvm.com/perfil.php?idCliente=${this.clienteId}`)
       .subscribe((data: any) => {
         this.clienteData = data;
       }, (error) => {

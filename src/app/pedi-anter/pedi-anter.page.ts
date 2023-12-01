@@ -20,7 +20,7 @@ export class PediAnterPage implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.clienteId = params['idCliente'];
     });
-    this.http.get<any[]>('http://localhost/busqueda.php?cliente_id=' + this.clienteId)
+    this.http.get<any[]>('https://mandaditos.proyectoinutvm.com/busqueda.php?cliente_id=' + this.clienteId)
     .subscribe(
       (data) => {
         console.log('Datos recibidos:', data); // Agrega este console.log
@@ -59,7 +59,7 @@ export class PediAnterPage implements OnInit {
   }
   eliminarPedido(pedidoId: string) {
     console.log('ID del pedido:', pedidoId);
-    const url = `http://localhost/cancelar_pedido.php?pedido_id=${pedidoId}`;
+    const url = `https://mandaditos.proyectoinutvm.com/cancelar_pedido.php?pedido_id=${pedidoId}`;
     console.log('URL con ID adjuntado:', url);
 
     const presentAlertRedError = async () => {
