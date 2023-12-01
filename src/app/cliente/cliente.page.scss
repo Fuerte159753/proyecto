@@ -1,28 +1,20 @@
 .custom-header {
-      ion-toolbar {
-          background-color: #3880ff; // Cambia el color de fondo según tu diseño
-          padding: 10px; // Ajusta el espaciado según tus preferencias
-        }
-  }
-  
-  .custom-breadcrumbs {
-      display: flex;
-      justify-content: space-around; /* Esto centra los breadcrumbs horizontalmente */
-      align-items: center; /* Esto centra los breadcrumbs verticalmente */
-      height: 60px; /* Ajusta la altura según tus necesidades */
+  ion-toolbar {
+      background-color: #6f9be7; 
+      padding: 10px; 
     }
-    
-    .custom-icon {
-      font-size: 24px; /* Ajusta el tamaño del ícono según tus necesidades */
-    }
-    .ion-title{
-      font-size: .9em; 
-    }
-    .button{
-      padding: 35px;
-      height: 35%;
-      width: 70%;
-      margin-top: -59px;
-      margin-bottom: 53px;
-    }
-   
+}
+
+.custom-breadcrumbs {
+  display: flex;
+  justify-content: space-around; 
+  align-items: center; 
+  height: 60px; 
+}
+
+.custom-icon {
+  font-size: 24px; 
+}
+.ion-title{
+  font-size: .9em; 
+}
