@@ -1,7 +1,9 @@
 <ion-header [translucent]="true" class="custom-header">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/cliente"></ion-back-button>
+      <ion-button (click)="navigateBackToClientePage()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
     </ion-buttons>
     <ion-title>Perfil</ion-title>
   </ion-toolbar>

@@ -57,6 +57,9 @@ irperfil() {
 irestatus(){
   this.router.navigate(['/pedi-anter'], {queryParams: { idCliente: this.clienteId } });
 }
+loungout(){
+  this.router.navigate(['/login']);
+}
 iredit(){
   this.router.navigate(['/edit'], {queryParams: { idC: this.clienteId } });
 }

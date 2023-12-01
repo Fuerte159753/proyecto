@@ -2,9 +2,6 @@
   <ion-header [translucent]="true" class="custom-header">
     <ion-toolbar>
       <ion-buttons slot="end"> 
-        <ion-button>
-          <ion-icon name="notifications-outline"></ion-icon> 
-        </ion-button>
       </ion-buttons>
       <ion-title class="ion-title">{{mensaje}} {{nombreCliente}}</ion-title>
     </ion-toolbar>
@@ -20,27 +17,19 @@
     <ion-button expand="block" shape="round" class="custom-button" (click)="irestatus()">Ver estatus pedidos</ion-button>
   </ion-tab-button>
 
-  <ion-fab slot="fixed" vertical="bottom" horizontal="end" style="bottom: -7px; right: 65px; color: white;">
-    <ion-fab-button>
-      <ion-icon name="chevron-up-circle"></ion-icon>
-    </ion-fab-button>
-    <ion-fab-list side="top">
-      <ion-fab-button (click)="iredit()">
-        <ion-icon name="person-circle-outline"></ion-icon>
-      </ion-fab-button>
-      <ion-fab-button>
-        <ion-icon name="exit-outline"></ion-icon>
-      </ion-fab-button>
-    </ion-fab-list>
-  </ion-fab>
-  
   <ion-tabs>
-    <ion-tab-bar slot="bottom" class="ion-justify-content-end">
-      <ion-tab-button (click)="irperfil()">
-        <ion-icon name="person-circle-outline"></ion-icon>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="home" (click)="irperfil()">
+        <ion-icon name="person"></ion-icon>
         Perfil
       </ion-tab-button>
-      <ion-tab-button tab="settings">
+      <ion-tab-button tab="radio" (click)="iredit()">
+        <ion-icon name="pencil-sharp"></ion-icon>
+        Editar Perfil
+      </ion-tab-button>
+      <ion-tab-button tab="library" (click)="loungout()">
+        <ion-icon name="log-out"></ion-icon>
+        Salir de la Sesión
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>

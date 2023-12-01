@@ -7,7 +7,38 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true"><ion-accordion-group>
+<ion-content [fullscreen]="true"><ion-accordion-group class="mi-acordeon">
+  <ion-accordion *ngFor="let pedido of pedidosPendientes" [value]="pedido.pedido_id"  class="mi-accordion-item">
+    <ion-item slot="header" color="tertiary" class="mi-accordion-header">
+      <ion-label>Pedido: {{ pedido.pedido_id }}</ion-label>
+    </ion-item>
+    <div class="ion-padding mi-accordion-content" class="ion-padding" slot="content" >
+      <p>Dirección: {{ pedido.direccion }}</p>
+      <p>Cliente: {{ pedido.cliente.nombre }} {{ pedido.cliente.apellido }}</p>
+      <p>Localidad: {{ pedido.cliente.localidad }}</p>
+        <ion-item *ngIf="pedido.detalles_pedido.length > 0" lines="full">
+          <ion-label>
+            Detalles del pedido:
+          </ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content" *ngFor="let detalle of pedido.detalles_pedido">
+          <p>Categoría: {{ detalle.categoria }}</p>
+          <p>Subcategoría: {{ detalle.subcategoria }}</p>
+          <p>Descripción: {{ detalle.descripcion }}</p>
+          <button class="boton ion-button ion-shape-round" (click)="marcarPedidoEntregado(pedido.pedido_id)">Entregado</button>
+          <!--<button class="boton" shape="round" (click)="marcarPedidoEntregado(pedido.pedido_id)">Entregado</button>-->
+        </div>
+        <ion-item *ngIf="pedido.detalles_pedido.length === 0" lines="full">
+          <ion-label>
+            Aun no hay detalles para este pedido.
+          </ion-label>
+        </ion-item>
+    </div>
+  </ion-accordion>
+</ion-accordion-group>
+</ion-content>
+
+<!--<ion-content [fullscreen]="true"><ion-accordion-group>
   <ion-accordion *ngFor="let pedido of pedidosPendientes" [value]="pedido.pedido_id">
     <ion-item slot="header" color="tertiary">
       <ion-label>Pedido: {{ pedido.pedido_id }}</ion-label>
@@ -25,7 +56,8 @@
           <p>Categoría: {{ detalle.categoria }}</p>
           <p>Subcategoría: {{ detalle.subcategoria }}</p>
           <p>Descripción: {{ detalle.descripcion }}</p>
-          <button color="success" (click)="marcarPedidoEntregado(pedido.pedido_id)">Entregado</button>
+          <button class="boton ion-button ion-shape-round" (click)="marcarPedidoEntregado(pedido.pedido_id)">Entregado</button>
+          <button class="boton" shape="round" (click)="marcarPedidoEntregado(pedido.pedido_id)">Entregado</button>
         </div>
         <ion-item *ngIf="pedido.detalles_pedido.length === 0" lines="full">
           <ion-label>
@@ -35,4 +67,4 @@
     </div>
   </ion-accordion>
 </ion-accordion-group>
-</ion-content>
+</ion-content>-->

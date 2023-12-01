@@ -21,6 +21,13 @@ export class PerfilPage implements OnInit {
       this.obtenerDatosCliente();
     });
   }
+  navigateBackToClientePage() {
+    this.router.navigate(['/cliente'], {
+      queryParams: {
+        idCliente: this.clienteId // Aquí proporciona el valor de clienteId
+      }
+    });
+  }
 
   obtenerDatosCliente() {
     this.http.get(`http://localhost/perfil.php?idCliente=${this.clienteId}`)

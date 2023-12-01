@@ -12,4 +12,55 @@ ion-content {
     font-size: 15px;
     color: #333;
   }
+  .boton {
+    background-color: rgb(32, 223, 32);
+    color: #ffffff;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+    outline: none;
   
+    /* Centrar horizontalmente el botón */
+    margin: 0 auto;
+    display: block; /* Asegura que el botón sea un elemento de bloque */
+  }
+  
+  .boton:hover {
+    background-color: #2fd32f; /* Cambia el color de fondo al pasar sobre el botón */
+  }
+  /* Estilos personalizados para el acordeón */
+.mi-acordeon {
+  /* Puedes agregar márgenes, rellenos o cualquier otro estilo general aquí */
+}
+
+/* Estilos personalizados para cada elemento del acordeón */
+.mi-accordion-item {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos personalizados para el encabezado del acordeón */
+.mi-accordion-header {
+  padding: 15px;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #fff;
+  color: #fff;
+}
+
+/* Estilos personalizados para el contenido del acordeón */
+.mi-accordion-content {
+  padding: 15px;
+  display: none;
+}
+
+/* Estilos personalizados para el contenido visible cuando se expande */
+.mi-accordion-content.show {
+  display: block;
+  border-top: 1px solid #ddd;
+}
