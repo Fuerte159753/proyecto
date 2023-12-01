@@ -1,9 +1,10 @@
-/* repartidor.page.scss (Estilos de ejemplo) */
+.custom-header {
+  ion-toolbar {
+      background-color: #3880ff; // Cambia el color de fondo según tu diseño
+      padding: 10px; // Ajusta el espaciado según tus preferencias
+    }
+}
 
-ion-content {
-    --background: #f4f4f4;
-  }
-  
   ion-item[slot="header"] {
     font-weight: bold;
   }

@@ -1,37 +1,71 @@
 .custom-header {
-    ion-toolbar {
-        background-color: #3880ff; // Cambia el color de fondo según tu diseño
-        padding: 10px; // Ajusta el espaciado según tus preferencias
-      }
+  ion-toolbar {
+      background-color: #3880ff; // Cambia el color de fondo según tu diseño
+      padding: 10px; // Ajusta el espaciado según tus preferencias
+    }
 }
-  /* Agrega estilos para centrar la imagen y hacerla redondeada */
+/* Agrega estilos para centrar la imagen y hacerla redondeada */
 .center-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px; /* Añade un espacio inferior a la imagen */
-  }
-  
-  .header-image {
-    width: 120px; /* Tamaño deseado de la imagen */
-    height: 120px; /* Tamaño deseado de la imagen */
-    border-radius: 50%; /* Hace que la imagen tenga bordes redondeados */
-    object-fit: cover; /* Ajusta el tamaño de la imagen manteniendo la proporción */
-  }
-  /* Estilos adicionales para el párrafo dentro de custom-item-group */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px; /* Añade un espacio inferior a la imagen */
+}
+
+.header-image {
+  width: 120px; /* Tamaño deseado de la imagen */
+  height: 120px; /* Tamaño deseado de la imagen */
+  border-radius: 50%; /* Hace que la imagen tenga bordes redondeados */
+  object-fit: cover; /* Ajusta el tamaño de la imagen manteniendo la proporción */
+}
+/* Estilos adicionales para el párrafo dentro de custom-item-group */
 .custom-item-group p {
-    margin-bottom: 10px; /* Espaciado inferior para separar los párrafos */
-    padding: 15px;
-    font-size: 12px; /* Tamaño de fuente general para los párrafos */
-    
-  }
-  
-  .custom-item-group strong {
-    font-weight: bold;
-    color: #2a313d; /* Color del texto fuerte (strong) */
-  }
-  
-  .custom-info span {
-    color: #6b6b6b; /* Color del texto de la información */
-  }
-  
+  text-align: center;
+  margin-bottom: 10px; /* Espaciado inferior para separar los párrafos */
+  padding: 15px;
+  font-size: 12px; /* Tamaño de fuente general para los párrafos */
+  background-color: #f0f0f0;
+  border-radius: 25px;
+  width: 250px;
+}
+
+.custom-item-group strong {
+  font-weight: bold;
+  color: #2a313d; /* Color del texto fuerte (strong) */
+}
+
+.custom-info span {
+  color: #6b6b6b; /* Color del texto de la información */
+}
+.custom-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+/* En styles.scss o tu archivo de estilos */
+.custom-card {
+background-color: #ffffff; /* Fondo blanco */
+padding: 20px; /* Espaciado interno */
+border-radius: 15px; /* Bordes redondos */
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.center-image {
+text-align: center;
+}
+
+.header-image {
+max-width: 100px; /* Ajusta el tamaño según tus necesidades */
+max-height: 100px; /* Ajusta el tamaño según tus necesidades */
+}
+
+.custom-info-container {
+text-align: center;
+}
+
+.custom-info {
+margin-bottom: 10px;
+}
+

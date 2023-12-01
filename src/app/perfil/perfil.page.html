@@ -9,18 +9,22 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="custom-content">
+<ion-content [fullscreen]="true" class="custom-content ion-content-con-background" style="--ion-background-color: #ecf0f1;">
   <br>
   <br>
   <br>
+  <ion-card class="custom-card">
   <div class="center-image">
     <ion-img src="assets/img/avatar.png" class="header-image"></ion-img>
   </div>
   <ion-item-group class="custom-item-group">
+    <div class="custom-info-container">
     <p class="custom-info"><strong>Nombre(s):</strong> <span>{{ clienteData.nombre }}</span></p>
     <p class="custom-info"><strong>Apellido(s):</strong> <span>{{ clienteData.apellido }}</span></p>
     <p class="custom-info"><strong>Telefono:</strong> <span>{{ clienteData.telefono }}</span></p>
     <p class="custom-info"><strong>Correo:</strong> <span>{{ clienteData.correo }}</span></p>
     <p class="custom-info"><strong>Password:</strong> <span>{{ clienteData.password }}</span></p>
+  </div>
   </ion-item-group>
+</ion-card>
 </ion-content>

@@ -61,4 +61,7 @@ export class RepartidorPage implements OnInit {
         }
       );
   }
+  navigatelogin(){
+    this.router.navigate(['/login']);
+  }
 }
