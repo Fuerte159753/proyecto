@@ -1,4 +1,4 @@
-<?php
+ng g s <?php
 header("Access-Control-Allow-Origin: http://localhost:8100");
 // Otros encabezados para permitir ciertos métodos HTTP y encabezados
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");

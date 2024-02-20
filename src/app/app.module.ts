@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { CargaPage } from './carga/carga.page';
 
 @NgModule({
   declarations: [AppComponent],

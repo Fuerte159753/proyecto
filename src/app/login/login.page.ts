@@ -47,7 +47,7 @@ export class LoginPage implements OnInit {
   async showLoading() {
     const loading = await this.loadingController.create({
       message: 'Loading...',
-      duration: 3000,
+      duration: 2000,
       spinner: 'circles',
     });
 
@@ -70,7 +70,7 @@ export class LoginPage implements OnInit {
       return;
     }
 
-  
+
 
     await this.showLoading();
 
@@ -86,7 +86,7 @@ export class LoginPage implements OnInit {
 
 
         console.log(response);
-       
+
         if (response && response.Tipeuser === 0) {
           this.router.navigate(['/repartidor'], { queryParams: { idRe: response.id } });
         } else if (response && response.Tipeuser === 1) {
@@ -94,10 +94,10 @@ export class LoginPage implements OnInit {
         } else {
           // Mostrar la alerta si la contraseña es incorrecta o el usuario no fue encontrado
           this.showAlert('Datos incorrectos. Verifícalos.');
-        } 
+        }
 
         this.isButtonDisabled = false;
-         
+
       },
       (error) => {
         this.isButtonDisabled = false;
